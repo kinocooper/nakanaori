@@ -1,24 +1,43 @@
-# README
+# ナカナオリ(仮)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
 
-Things you may want to cover:
+パートナーとのケンカの原因や・仲直りの記録を残しパートナーや他のユーザと共有するサイト。
 
-* Ruby version
+### サイトテーマ
 
-* System dependencies
+長く親密に付き合う人との良好な関係の構築・継続の手助けを目的とする。
 
-* Configuration
+### テーマを選んだ理由
 
-* Database creation
+パートナーと長く付き合う上でケンカや衝突は避けて通れないが、仲直りした後は何があったかすっかり忘れてしまうことも多い、という自分自身の反省から。
+ケンカの原因や仲直りの方法をログとして残すことで同じ火種を起こさないように改善できる。
+近年の離婚率の高まりもあり、改善に役立つのではと考えた。
 
-* Database initialization
+### ターゲットユーザ
 
-* How to run the test suite
+- 主に 20~40 台の夫婦／パートナー関係
+- 親子(親だけが使用を想定)
 
-* Services (job queues, cache servers, search engines, etc.)
+### 主な利用シーン
 
-* Deployment instructions
+- パートナーとのケンカの原因や仲直り後の記録をする
+- 必要なときに記録を見返す
+- パートナーとの不和などについて他ユーザに相談／アドバイスする
+- プレゼントなどをあげた／もらった記録をする
 
-* ...
+## 設計書
+
+(作成中)
+
+## チャレンジ要素一覧
+
+https://docs.google.com/spreadsheets/d/169ZZw8W8fhk6erZuD-HOw466s0kc7Jj8ofgcm-HGTDc/edit?usp=sharing
+
+## 開発環境
+
+- OS：Microsoft Windows [Version 10.0.19042.1526]
+- 言語：HTML,CSS,JavaScript,Ruby
+- フレームワーク：Ruby on Rails,Bootstrap
+- JS ライブラリ：jQuery
+- IDE：Cloud9
