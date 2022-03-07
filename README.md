@@ -28,6 +28,13 @@
 
 ## 設計書
 
+- ワイヤーフレーム
+https://jamboard.google.com/d/1sI5cNTZZczSFwh5Dvo5-8rp3U1bXGVQ4hWJot4Ek_Mc/edit?usp=sharing
+- ER図
+https://drive.google.com/file/d/1IidrS5pmM7ZYxf56cankagEHDLaUVCli/view?usp=sharing
+- テーブル定義書
+https://docs.google.com/spreadsheets/d/11UpgjxxkkB5cfS0ULKhohoEmVCK0xNMANLcWwudQB-g/edit?usp=sharing
+- アプリケーション詳細設計
 (作成中)
 
 ## チャレンジ要素一覧
