@@ -1,0 +1,2 @@
+class PersonalOpinion < ApplicationRecord
+end
