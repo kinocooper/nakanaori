@@ -1,0 +1,53 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg bg-success p-3">
+  <!--レスポンシブデザイン変更タイミング(lg) -->
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <li class="navbar-nav">
+          <%= link_to root_path do %>
+            とっぷへ
+            <%#= image_tag 'ヘッダーロゴ.png', size: "70x70" %>
+          <% end %>
+        </li>
+        <!--<form class="search">-->
+        <!--  <input type="text", class="search_input">-->
+        <!--  <button>検索</button>-->
+        <!--</form>-->
+        <ul class="navbar-nav ml-auto">
+
+          <% if user_signed_in? %>
+            <li class="user-name text-light">
+              ようこそ、<%= current_user.name %>さん！
+            </li>
+
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light border border-light rounded' do %>
+                ログアウト
+              <% end %>
+            </li>
+
+          <% else %>
+            <li>
+              <%= link_to about_path, class: 'nav-link text-light border border-light rounded' do %>
+                About
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to new_user_registration_path, class: 'nav-link text-light border border-light rounded' do %>
+                新規登録
+              <% end %>
+            </li>
+
+            <li>
+              <%= link_to new_user_session_path, class: 'nav-link text-light border border-light rounded' do %>
+                ログイン
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>

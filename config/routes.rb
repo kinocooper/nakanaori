@@ -13,11 +13,11 @@ Rails.application.routes.draw do
   get 'pairs/complete', as: "complete"
   get 'pairs/confirm', as: "p_confirm"
 
-  resources :discuss_records, only:[:new,:create,:show,:edhit,:index,:destroy] do
+  resources :discussion_records, only:[:new,:create,:show,:edhit,:index,:destroy] do
     resources :personal_opinions, only:[:update]
   end
-  patch "discuss_records/reconcile", as: "reconcile"
-  get 'discuss_records/congratulations', as: "congratulations"
+  patch "discussion_records/reconcile", as: "reconcile"
+  get 'discussion_records/congratulations', as: "congratulations"
 
   resources :tags, only:[:new,:create,:destroy]
 
