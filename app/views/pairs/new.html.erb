@@ -1,0 +1,9 @@
+
+<%= form_with model: @pair, local:true do |f| %>
+
+  <%= f.label :name, "ペア名" %>
+  <%= f.text_field :name, "ペア名" %>
+
+  <%= f.submit "ペア作成！" %>
+
+<% end %>

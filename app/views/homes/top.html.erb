@@ -1,2 +1,10 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+
+---------デバッグ用----------
+<dl>
+<!--.attributes⇒対象インスタンスの属性(カラム)を排出-->
+<% current_user.attributes.each do |attr_name, value| %>
+<dt><%= attr_name %></dt>
+<dd><%= value %></dd>
+<% end %>
+</dl>
+---------デバッグ用----------
