@@ -5,9 +5,15 @@ class PairsController < ApplicationController
   end
 
   def create
-    pair = params(pair_params)
+    # ペアの新規生成
+    pair = Pair.new(pair_params)
     pair.save
-    redirect_to about_path
+    
+    # 作成したてのペアidをcurrent_userに結びつける
+    @user = User.find(current_user.id)
+    @user.update(pair_id: pair.id)
+
+    redirect_to root_path
   end
 
   def edit
@@ -26,7 +32,7 @@ class PairsController < ApplicationController
   private
 
   def pair_params
-    params.require(:pairs).permit(:name,:motto,:pair_type,:rank)
+    params.require(:pair).permit(:name,:motto,:pair_type,:rank)
   end
 
 end

@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :pair
+  belongs_to :pair, optional: true
   # 本人から見て
-  belongs_to :partner, class_name: "User"
+  belongs_to :partner, class_name: "User", optional: true
   # 相方から見て
   has_one :person, class_name: "User"
 
