@@ -1,6 +1,6 @@
-class CreateDiscussionRecords < ActiveRecord::Migration[6.1]
+class CreateDiscussRecords < ActiveRecord::Migration[6.1]
   def change
-    create_table :discussion_records do |t|
+    create_table :discuss_records do |t|
       t.integer :pair_id, null: false
       t.string :title, null: false, default: ""
       t.text :detail, null: false, default: ""

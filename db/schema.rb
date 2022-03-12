@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "discussion_records", force: :cascade do |t|
+  create_table "discuss_records", force: :cascade do |t|
     t.integer "pair_id", null: false
     t.string "title", default: "", null: false
     t.text "detail", default: "", null: false

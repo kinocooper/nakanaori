@@ -2,7 +2,7 @@ class Pair < ApplicationRecord
 
   has_many :users, dependent: :destroy
   has_many :tags, dependent: :destroy
-  has_many :discussion_records, dependent: :destroy
+  has_many :discuss_records, dependent: :destroy
   has_one_attached :image
 
   def get_pair_image(width, height)

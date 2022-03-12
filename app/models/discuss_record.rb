@@ -1,4 +1,4 @@
-class DiscussionRecord < ApplicationRecord
+class DiscussRecord < ApplicationRecord
   
   belongs_to :pair
   has_many :personal_opinions, dependent: :destroy
