@@ -4,7 +4,16 @@ Rails.application.routes.draw do
   resource :user, only:[:edit,:update]
   get 'users/confirm' ,as: "u_confirm"
   patch 'users/disabling' => "users#disabling", as: "disabling"
-  devise_for :user
+
+  # deviseをマッピングするがデフォルトルーティングは全skip、必要なアクションだけ個別にルーティング
+  devise_for :user, skip: :all
+  devise_scope :user do
+    get 'sing_up' => 'devise/registrations#new', as: :new_user_registration
+    post 'sing_up' => 'devise/registrations#create', as: :user_registration
+    get 'login' => 'devise/sessions#new', as: :new_user_session
+    post 'login' => 'devise/sessions#create', as: :user_session
+    delete 'logout' => 'devise/sessions#destroy', as: :destroy_user_session
+  end
 
   resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
