@@ -1,5 +1,6 @@
 
----------デバッグ用----------
+---------デバッグ用----------<br>
+ログイン中ユーザ
 <dl>
 <!--.attributes⇒対象インスタンスの属性(カラム)を排出-->
 <% current_user.attributes.each do |attr_name, value| %>
@@ -10,3 +11,9 @@
 ---------デバッグ用----------
 
 <%= link_to "ペア新規登録へ", new_pairs_path,class:"btn btn-success" %>
+<%= link_to "招待される", join_path,class:"btn btn-success" %>
+<%= link_to "ペア情報編集へ", edit_pairs_path,class:"btn btn-success" %>
+
+
+
+

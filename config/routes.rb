@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   patch 'users/disabling' => "users#disabling", as: "disabling"
 
   resource :pairs, only:[:new,:create,:edit,:update,:destroy] #create的なものはregistration#createでまとめる予定
+  get "pairs/join", as: "join"
+  patch "pairs/pairing", as: "pairing"
   get 'pairs/invite', as: "invite"
   post "pairs/send", as: "send"
   get 'pairs/complete', as: "complete"
