@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
   get "about" => "homes#about", as: "about"
 
   resource :users, only:[:edit,:update]
   get 'users/confirm' ,as: "u_confirm"
   patch 'users/disabling' => "users#disabling", as: "disabling"
+  devise_for :users
 
   resource :pairs, only:[:new,:create,:edit,:update,:destroy] #create的なものはregistration#createでまとめる予定
   root to: 'pairs#top', as: "root"

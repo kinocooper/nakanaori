@@ -82,7 +82,7 @@ class PairsController < ApplicationController
   def update
     pair = current_user.pair
     pair.update(pair_params)
-    redirect_to root_path
+    redirect_to root_path, notice:"ペア情報を更新しました！"
   end
 
   def invite
@@ -98,7 +98,7 @@ class PairsController < ApplicationController
   private
 
   def pair_params
-    params.require(:pair).permit(:name,:motto,:pair_type,:rank,:keyword)
+    params.require(:pair).permit(:name,:motto,:pair_type,:rank,:keyword,:image)
   end
 
 end

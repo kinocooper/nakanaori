@@ -6,6 +6,9 @@ form_with 指定modelから自動生成のパスがおかしいので具体的�
   <%= f.label :name, "ペア名" %>
   <%= f.text_field :name %>
 
+  <%= f.label :image, "ペア画像" %>
+  <%= f.file_field :image, accept: "image/*" %>
+
   <%= f.label :motto, "ペアのモットー！" %>
   <%= f.text_field :motto %>
 
