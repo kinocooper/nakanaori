@@ -11,6 +11,8 @@
   <%= f.label :oko_gauge, "おこゲージ" %>
   <%= f.select :oko_gauge, options_for_select([['ふつう', 0], ['かなしい', 1], ['おこ', 2], ['激おこ', 3], ['一人にして', 4]]), {}, {class: 'oko_gauge_select'} %>
 
-  <%= f.submit "ユーザー情報更新！" %>
+  <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
 
 <% end %>
+
+<%= link_to "退会する？", u_confirm_path, class:"btn btn-danger" %>←片割れだけの退会は複雑なので、一旦後回しにする

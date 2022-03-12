@@ -85,6 +85,12 @@ class PairsController < ApplicationController
     redirect_to root_path, notice:"ペア情報を更新しました！"
   end
 
+  def destroy
+    pair = current_user.pair
+    pair.destroy
+    redirect_to about_path, notice:"全情報を削除しました。ご利用ありがとうございました。"
+  end
+
   def invite
   end
 

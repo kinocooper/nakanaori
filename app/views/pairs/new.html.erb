@@ -1,6 +1,6 @@
 <h2>ペア新規登録画面</h2>
 
-<%= form_with model: @pair, local:true do |f| %>
+<%= form_with model: @pair, url:pair_path, local:true do |f| %>
 
   <%= f.label :name, "ペア名" %>
   <%= f.text_field :name %>

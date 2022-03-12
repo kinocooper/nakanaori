@@ -12,6 +12,13 @@ class UsersController < ApplicationController
   def confirm
   end
 
+  def disabling
+    user = User.find(current_user.id)
+    user.update(is_active: FALSE)
+    
+    user.pair.update(is_pair)
+  end
+
 
   private
 
