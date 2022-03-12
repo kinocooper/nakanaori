@@ -1,8 +1,6 @@
 <h2>ユーザ情報編集</h2>
 
-<!--form_with 指定modelから自動生成のパスがおかしいので具体的にupdateアクションのパスを指定した　原因不明-->
-<%#= form_with model: @user, url:"/pairs", method: :patch, local: true do |f| %>
-<%= form_with model: @user,url:"/users", method: :patch, local: true do |f| %>
+<%= form_with model: @user, local: true do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name %>

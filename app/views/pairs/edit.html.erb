@@ -1,7 +1,6 @@
 <h2>ペア情報編集画面</h2>
 
-form_with 指定modelから自動生成のパスがおかしいので具体的にupdateアクションのパスを指定した　原因不明
-<%= form_with model: @pair, url:"/pairs", method: :patch, local: true do |f| %>
+<%= form_with model: @pair, local: true do |f| %>
 
   <%= f.label :name, "ペア名" %>
   <%= f.text_field :name %>

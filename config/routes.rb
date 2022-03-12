@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
   get "about" => "homes#about", as: "about"
 
-  resource :users, only:[:edit,:update]
+  resource :user, only:[:edit,:update]
   get 'users/confirm' ,as: "u_confirm"
   patch 'users/disabling' => "users#disabling", as: "disabling"
-  devise_for :users
+  devise_for :user
 
-  resource :pairs, only:[:new,:create,:edit,:update,:destroy] #create的なものはregistration#createでまとめる予定
+  resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
   get "pairs/introduction", as: "introduction"
   get "pairs/join", as: "join"
