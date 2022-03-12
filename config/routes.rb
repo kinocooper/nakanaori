@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'homes#top', as: "root"
   get "about" => "homes#about", as: "about"
 
   resource :users, only:[:edit,:update]
@@ -8,6 +7,8 @@ Rails.application.routes.draw do
   patch 'users/disabling' => "users#disabling", as: "disabling"
 
   resource :pairs, only:[:new,:create,:edit,:update,:destroy] #create的なものはregistration#createでまとめる予定
+  root to: 'pairs#top', as: "root"
+  get "pairs/introduction", as: "introduction"
   get "pairs/join", as: "join"
   patch "pairs/pairing", as: "pairing"
   get 'pairs/invite', as: "invite"

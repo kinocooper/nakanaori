@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_074618) do
     t.text "motto", default: "", null: false
     t.string "keyword", default: "", null: false
     t.integer "pair_type", default: 0, null: false
+    t.boolean "is_paired", default: false, null: false
     t.integer "rank", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

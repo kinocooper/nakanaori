@@ -1,5 +1,14 @@
 class PairsController < ApplicationController
 
+  before_action :pair_nil_check, only:[:top,:edit,:invite,:complete,:confirm]
+
+  def top
+    @pair = current_user.pair
+  end
+
+  def introduction
+  end
+
   def new
     @pair = Pair.new
   end
@@ -15,27 +24,37 @@ class PairsController < ApplicationController
     if Pair.exists?(id: join_pair_id)
       pair = Pair.find_by(id: join_pair_id)
 
-      # キーワードが正しいか
-      if pair.keyword == join_keyword
-        # 1 自分のペアカラムを入れる
-        person = User.find(current_user.id)
-        person.update(pair_id: pair.id)
+      # そのペアがまだ未ペアリングであるか
+      if pair.is_paired == FALSE
 
-        # 2 自分のパートナーカラムを入れる
-        # そのペアに結びつくuser2件のうち、自分じゃない方を入れる
-        partner = User.where(pair_id: pair.id).where.not(id: current_user.id)
-        # where句で検索したので、1件しかないけど『ids』でないと出せないっぽい
-        # その『0件目』を使う
-        person.update(partner_id: partner.ids[0])
+        # キーワードが正しいか
+        if pair.keyword == join_keyword
+          # 1 自分のペアカラムを入れる
+          person = User.find(current_user.id)
+          person.update(pair_id: pair.id)
 
-        # 3 相方のパートナーカラムを入れる
-        person.partner.update(partner_id: person.id)
+          # 2 自分のパートナーカラムを入れる
+          # そのペアに結びつくuser2件のうち、自分じゃない方を入れる
+          partner = User.where(pair_id: pair.id).where.not(id: current_user.id)
+          # where句で検索したので、1件しかないけど『ids』でないと出せないっぽい
+          # その『0件目』を使う
+          person.update(partner_id: partner.ids[0])
 
-        redirect_to root_path, notice: 'ペアリングしました！'
+          # 3 相方のパートナーカラムを入れる
+          person.partner.update(partner_id: person.id)
+
+          # 4 ペアの_is_pairedステータスを更新
+          pair.update(is_paired: TRUE)
+
+          redirect_to root_path, notice: 'ペアリングしました！'
+        else
+          redirect_to join_path, notice: 'キーワードが間違っています'
+        end
+
       else
-        redirect_to join_path, notice: 'キーワードが間違っています'
+        redirect_to join_path, notice: '既にペアリング済みのペアIDです。'
       end
-      
+
     else
       redirect_to join_path, notice: 'ペアが存在しません'
 

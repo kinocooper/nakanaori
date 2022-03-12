@@ -1,0 +1,38 @@
+<div class = "container">
+  <div class = "row my-3">
+    <div class = "col-4">
+      <h2>とっぷぺーじ</h2>
+    </div>
+  </div>
+
+  <div class = "row">
+
+    <%= render "sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9 bg-primary">
+      <div class="row">
+        めいん部分
+      </div>
+    </div>
+  </div>
+  <%#= paginate @items_page %>
+</div>
+
+---------デバッグ用----------<br>
+ログイン中ユーザ
+<dl>
+<!--.attributes⇒対象インスタンスの属性(カラム)を排出-->
+<% current_user.attributes.each do |attr_name, value| %>
+<dt><%= attr_name %></dt>
+<dd><%= value %></dd>
+<% end %>
+</dl>
+---------デバッグ用----------
+
+<%#= link_to "ペア新規登録へ", new_pairs_path,class:"btn btn-success" %>
+<%#= link_to "招待される", join_path,class:"btn btn-success" %>
+<%= link_to "ペア情報編集へ", edit_pairs_path,class:"btn btn-success" %>
+
+
+
+
