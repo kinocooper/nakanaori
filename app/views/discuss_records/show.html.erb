@@ -1,2 +1,7 @@
-<h1>DiscussRecords#show</h1>
-<p>Find me in app/views/discuss_records/show.html.erb</p>
+<h2>[<%= @discuss_record.title %>]</h2>
+
+<h4>ケンカの詳細</h4>
+<p><%= @discuss_record.detail %></p>
+
+<%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
+<%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>

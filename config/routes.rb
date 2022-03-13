@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'pairs/complete', as: "complete"
   get 'pairs/confirm', as: "p_confirm"
 
-  resources :discuss_records, only:[:new,:create,:show,:edhit,:index,:destroy] do
+  resources :discuss_records, only:[:new,:create,:index,:show,:edit,:update,:destroy] do
     resources :personal_opinions, only:[:update]
   end
   patch "discussion_records/reconcile", as: "reconcile"

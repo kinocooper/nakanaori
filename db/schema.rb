@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
   end
 
   create_table "personal_opinions", force: :cascade do |t|
-    t.integer "discussion_record_id", null: false
+    t.integer "discuss_record_id", null: false
     t.integer "user_id", null: false
     t.text "claim", default: "", null: false
     t.text "conclude", default: "", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
 
   create_table "tag_relationships", force: :cascade do |t|
     t.integer "tag_id", null: false
-    t.integer "discussion_record_id", null: false
+    t.integer "discuss_record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
