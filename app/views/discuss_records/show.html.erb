@@ -13,6 +13,10 @@
 <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
 <p><%= @partners_opinion.conclude %></p>
 
-
+<% unless @discuss_record.is_closed %>
+  <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
+<% else %>
+  <p>ナカナオリ済</p>
+<% end %>
 <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
 <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>

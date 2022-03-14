@@ -39,13 +39,21 @@ class DiscussRecordsController < ApplicationController
   def update
     discuss_record = DiscussRecord.find(params[:id])
     discuss_record.update(discuss_record_params)
+    my_opinion = discuss_record.personal_opinions.find_by(user_id: current_user.id)
+    my_opinion.update(personal_opinion_params[:personal_opinion])
     redirect_to discuss_record_path(discuss_record),notice:"投稿を更新しました！"
   end
 
   def destroy
     discuss_record = DiscussRecord.find(params[:id])
     discuss_record.destroy
-    redirect_to discuss_records_path,notice:"投稿を削除しました！"
+    redirect_to discuss_records_path, notice:"投稿を削除しました！"
+  end
+
+  def reconcile
+    discuss_record = DiscussRecord.find(params[:id])
+    discuss_record.update(is_closed: TRUE)
+    redirect_to congratulations_path, notice: "ナカナオリおめでとう＾＾"
   end
 
   def congratulations

@@ -25,11 +25,11 @@ Rails.application.routes.draw do
   get 'pairs/complete', as: "complete"
   get 'pairs/confirm', as: "p_confirm"
 
-  resources :discuss_records, only:[:new,:create,:index,:show,:edit,:update,:destroy] do
-    resources :personal_opinions, only:[:update]
-  end
-  patch "discussion_records/reconcile", as: "reconcile"
-  get 'discussion_records/congratulations', as: "congratulations"
+  get 'discuss_records/congratulations', as: "congratulations"
+  resources :discuss_records, only:[:new,:create,:index,:show,:edit,:update,:destroy]#do
+    # resources :personal_opinions, only:[:update]　←ナカナオリ直前にまとめ意見だけを編集するようなページを作るなら必要
+  # end
+  patch "discuss_records/:id/reconcile" => "discuss_records#reconcile", as: "reconcile"
 
   resources :tags, only:[:new,:create,:destroy]
 
