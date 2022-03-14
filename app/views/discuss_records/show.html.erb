@@ -3,5 +3,16 @@
 <h4>ケンカの詳細</h4>
 <p><%= @discuss_record.detail %></p>
 
+<p>[自分の主張]</p>
+<p><%= @my_opinion.claim %></p>
+<p>[自分のまとめ意見]</p>
+<p><%= @my_opinion.conclude %></p>
+
+<p>[<%= current_user.partner.name %>さんの主張]</p>
+<p><%= @partners_opinion.claim %></p>
+<p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
+<p><%= @partners_opinion.conclude %></p>
+
+
 <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
 <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>
