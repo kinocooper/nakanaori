@@ -12,10 +12,12 @@
 <p>[自分のまとめ意見]</p>
 <p><%= @my_opinion.conclude %></p>
 
-<p>[<%= current_user.partner.name %>さんの主張]</p>
-<p><%= @partners_opinion.claim %></p>
-<p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
-<p><%= @partners_opinion.conclude %></p>
+<% unless current_user.partner == nil %>
+  <p>[<%= current_user.partner.name %>さんの主張]</p>
+  <p><%= @partners_opinion.claim %></p>
+  <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
+  <p><%= @partners_opinion.conclude %></p>
+<% end %>
 
 <% unless @discuss_record.is_closed %>
   <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>

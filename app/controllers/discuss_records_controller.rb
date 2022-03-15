@@ -62,7 +62,7 @@ class DiscussRecordsController < ApplicationController
   end
 
   def index
-    @discuss_records = DiscussRecord.all
+    @discuss_records = current_user.pair.discuss_records
   end
 
 
