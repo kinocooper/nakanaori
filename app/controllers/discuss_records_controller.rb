@@ -62,7 +62,7 @@ class DiscussRecordsController < ApplicationController
   end
 
   def index
-    @discuss_records = current_user.pair.discuss_records
+    @discuss_records = current_user.pair.discuss_records.order("created_at DESC")
   end
 
 

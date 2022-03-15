@@ -4,6 +4,8 @@ class PairsController < ApplicationController
 
   def top
     @pair = current_user.pair
+    @discussing_records = current_user.pair.discuss_records.where(is_closed: FALSE).order("created_at DESC").limit(5)
+    @closed_records = DiscussRecord.where(pair_id: current_user.pair.id).where(is_closed: TRUE).order("created_at DESC").limit(5)
   end
 
   def introduction

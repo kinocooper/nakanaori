@@ -9,10 +9,28 @@
 
     <%= render "sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9 bg-primary">
-      <div class="row">
-        めいん部分
-      </div>
+    <div class="col-9 bg-info">
+      <% unless @discussing_records.empty?   %>
+        <h3>[ケンカ中！！5件]</h3>
+        <% @discussing_records.each do |record| %>
+          <p>
+            <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
+            <% record.tags.each do |tag| %>
+              <%= "[#{tag.name}]" %>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <h3>[最新ナカナオリ5件]</h3>
+      <% @closed_records.each do |record| %>
+        <p>
+          <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
+          <% record.tags.each do |tag| %>
+            <%= "[#{tag.name}]" %>
+          <% end %>
+        </p>
+      <% end %>
     </div>
   </div>
   <%#= paginate @items_page %>
