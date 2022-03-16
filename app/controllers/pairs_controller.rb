@@ -6,6 +6,10 @@ class PairsController < ApplicationController
     @pair = current_user.pair
     @discussing_records = current_user.pair.discuss_records.where(is_closed: FALSE).order("created_at DESC").limit(5)
     @closed_records = DiscussRecord.where(pair_id: current_user.pair.id).where(is_closed: TRUE).order("created_at DESC").limit(5)
+    # @limited_span_records = DiscussRecord.where("created_at >= ?",Date.parse('2022/03/10')).where("created_at <= ?",Date.parse('2022/03/16'))
+    # @w_record_counts =
+    # Chartkickに渡すハッシュを@dates変数に
+    @dates = DiscussRecord.seven_days_d_count(current_user.pair)
   end
 
   def introduction
