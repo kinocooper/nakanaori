@@ -1,2 +1,13 @@
-<h1>Pairs#confirm</h1>
-<p>Find me in app/views/pairs/confirm.html.erb</p>
+<h1>完全退会確認</h1>
+<p>本当に完全退会しますか？</p>
+<ul>
+  <% unless current_user.partner == nil %>
+    <li><%= current_user.partner.name %>さんも同時に退会します。同意を得てください。</li>
+  <% end %>
+  <li>ペア情報・投稿含めすべて削除します。</li>
+</ul>
+
+<%= link_to "完全退会する", pair_path, method: :delete, class:"btn btn-danger" %></p>
+
+
+<p>自分だけが退会する場合は<%= link_to "こちら", u_confirm_path %></p>

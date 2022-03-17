@@ -1,0 +1,11 @@
+<h2>ぺありんぐ</h2>
+
+<%= form_with url:pairing_path, method: :patch, local:true do |f| %>
+
+  <%= f.label :pair_id, "ペアID" %>
+  <%= f.number_field :pair_id %>
+
+  <%= f.label :keyword, "キーワード" %>
+  <%= f.text_field :keyword %>
+  <%= f.submit "ぺありんぐ", class: 'btn btn-secondary' %>
+<% end %>

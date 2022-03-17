@@ -1,2 +1,0 @@
-class DiscussionRecord < ApplicationRecord
-end

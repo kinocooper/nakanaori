@@ -1,0 +1,31 @@
+    <div class="col-3 bg-success">
+      <h3>ペア情報</h3>
+      <table class="table">
+        <tr>
+          <th colspan="2">
+            <%= image_tag pair.get_pair_image(200,200) %><br>
+            <%= pair.name %>
+          </th>
+        </tr>
+        <tr>
+          <th>モットー</th>
+          <td><%= pair.motto %></td>
+        </tr>
+        <tr>
+          <th>おしどりランク</th>
+          <td><%= pair.rank %></td>
+        </tr>
+        <% if current_user.pair.is_paired %>
+          <tr>
+            <th>相方のおこゲージ</th>
+            <td><%= current_user.partner.oko_gauge %></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <%= link_to "ペア編集", edit_pair_path, class:"btn btn-block btn-secondary my-1" %>
+      <%= link_to "ユーザー編集", edit_user_path, class:"btn btn-block btn-secondary my-1" %>
+      <% unless current_user.pair.is_paired %>
+        <%= link_to "ペア招待", invite_path, class:"btn btn-block btn-secondary my-1" %>
+      <% end %>
+    </div>

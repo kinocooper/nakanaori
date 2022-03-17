@@ -1,2 +1,18 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h2>ユーザ情報編集</h2>
+
+<%= form_with model: @user, local: true do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :email, "メールアドレス" %>
+  <%= f.email_field :email %>
+
+  <%= f.label :oko_gauge, "おこゲージ" %>
+  <%= f.select :oko_gauge, options_for_select([['ふつう', 0], ['かなしい', 1], ['おこ', 2], ['激おこ', 3], ['一人にして', 4]]), {}, {class: 'oko_gauge_select'} %>
+
+  <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
+
+<% end %>
+
+<%= link_to "退会する？", u_confirm_path, class:"btn btn-danger" %>←片割れだけの退会は複雑なので、一旦後回しにする

@@ -1,0 +1,56 @@
+<div class = "container">
+  <div class = "row my-3">
+    <div class = "col-4">
+      <h2>とっぷぺーじ</h2>
+    </div>
+  </div>
+
+  <div class = "row">
+
+    <%= render "sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9 bg-info">
+      <% unless @discussing_records.empty?   %>
+        <h3>[ケンカ中！！5件]</h3>
+        <% @discussing_records.each do |record| %>
+          <p>
+            <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
+            <% record.tags.each do |tag| %>
+              <%= "[#{tag.name}]" %>
+            <% end %>
+          </p>
+        <% end %>
+      <% end %>
+
+      <h3>[最新ナカナオリ5件]</h3>
+      <% @closed_records.each do |record| %>
+        <p>
+          <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
+          <% record.tags.each do |tag| %>
+            <%= "[#{tag.name}]" %>
+          <% end %>
+        </p>
+      <% end %>
+
+      <%= column_chart @dates %>
+    </div>
+  </div>
+  <%#= paginate @items_page %>
+</div>
+
+---------デバッグ用----------<br>
+ログイン中ユーザ
+<dl>
+<!--.attributes⇒対象インスタンスの属性(カラム)を排出-->
+<% current_user.attributes.each do |attr_name, value| %>
+<dt><%= attr_name %></dt>
+<dd><%= value %></dd>
+<% end %>
+</dl>
+---------デバッグ用----------
+
+<%#= link_to "ペア新規登録へ", new_pairs_path,class:"btn btn-success" %>
+<%#= link_to "招待される", join_path,class:"btn btn-success" %>
+
+
+

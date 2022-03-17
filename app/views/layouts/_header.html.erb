@@ -1,0 +1,50 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-expand-lg bg-success p-3">
+  <!--レスポンシブデザイン変更タイミング(lg) -->
+    <div class="container">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <li class="navbar-nav">
+          <%= link_to root_path, class:"text-light nav-link border border-light rounded mx-3" do %>
+            とっぷへ
+            <%#= image_tag 'ヘッダーロゴ.png', size: "70x70" %>
+          <% end %>
+        </li>
+        <!--<form class="search">-->
+        <!--  <input type="text", class="search_input">-->
+        <!--  <button>検索</button>-->
+        <!--</form>-->
+
+        <% if user_signed_in? %>
+          <p class="user-name text-light">
+            ようこそ、<%= current_user.name %>さん！
+          </p>
+
+          <ul class="navbar-nav ml-auto">
+            <li>
+              <%= link_to "投稿する", new_discuss_record_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+            </li>
+            <li>
+              <%= link_to "投稿一覧", discuss_records_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light border border-light rounded mx-1' %>
+            </li>
+          </ul>
+
+          <% else %>
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to "About", about_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              </li>
+              <li>
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              </li>
+              <li>
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              </li>
+            </ul>
+          <% end %>
+      </div>
+    </div>
+  </nav>
+</header>
