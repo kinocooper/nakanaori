@@ -3,8 +3,8 @@ class CreateDiscussRecords < ActiveRecord::Migration[6.1]
     create_table :discuss_records do |t|
       t.integer :pair_id, null: false
       t.string :title, null: false, default: ""
-      t.text :detail, null: false, default: ""
-      t.boolean :is_closed, null: false, default: FALSE
+      t.text :detail, null: false
+      t.boolean :is_closed, null: false, default: false
       t.timestamps
     end
   end
