@@ -1,4 +1,5 @@
 class DiscussRecord < ApplicationRecord
+  attribute :detail, :text, default: ''
 
   belongs_to :pair
   has_many :personal_opinions, dependent: :destroy

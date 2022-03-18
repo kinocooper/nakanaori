@@ -1,5 +1,5 @@
 class Pair < ApplicationRecord
-
+  attribute :motto, :text, default: 'もっと～！'
   has_many :users, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :discuss_records, dependent: :destroy

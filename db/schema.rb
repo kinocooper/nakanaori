@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
   create_table "discuss_records", force: :cascade do |t|
     t.integer "pair_id", null: false
     t.string "title", default: "", null: false
-    t.text "detail", default: "", null: false
+    t.text "detail", null: false
     t.boolean "is_closed", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
 
   create_table "pairs", force: :cascade do |t|
     t.string "name", default: "", null: false
-    t.text "motto", default: "", null: false
+    t.text "motto", null: false
     t.string "keyword", default: "", null: false
     t.integer "pair_type", default: 0, null: false
     t.boolean "is_paired", default: false, null: false
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 2022_03_12_051650) do
   create_table "personal_opinions", force: :cascade do |t|
     t.integer "discuss_record_id", null: false
     t.integer "user_id", null: false
-    t.text "claim", default: "", null: false
-    t.text "conclude", default: "", null: false
+    t.text "claim", null: false
+    t.text "conclude", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
