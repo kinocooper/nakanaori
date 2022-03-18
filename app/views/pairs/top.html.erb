@@ -32,7 +32,9 @@
         </p>
       <% end %>
 
-      <%= column_chart @dates %>
+      <%#= column_chart @w_dates %>
+      <h3>[今年のナカナオリチャート]</h3>
+      <%= column_chart @y_dates %>
     </div>
   </div>
   <%#= paginate @items_page %>
