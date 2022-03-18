@@ -44,6 +44,14 @@ class DiscussRecord < ApplicationRecord
     return dates
   end
 
-
+  def self.each_tags_count(current_pair)
+    ratios = {}
+    tags = current_pair.tags
+    tags.each do |tag|
+      counts = tag.discuss_records.count
+      ratios.store("#{tag.name}",counts)
+    end
+    return ratios
+  end
 
 end

@@ -1,12 +1,3 @@
 <h2>ケンカ投稿一覧</h2>
-<% @discuss_records.each do |discuss_record| %>
-  <p>
-    <%= link_to "#{discuss_record.title} #{discuss_record.created_at}", discuss_record_path(discuss_record) %>
-    <% discuss_record.tags.each do |tag| %>
-      <%= "[#{tag.name}]" %>
-    <% end %>
-  </p>
-<% end %>
 
-
-<!--record.created_at -->
+<%= render "discuss_records/index", records: @discuss_records %>

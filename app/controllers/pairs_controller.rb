@@ -11,6 +11,7 @@ class PairsController < ApplicationController
     # Chartkickに渡すハッシュを@dates変数に
     @w_dates = DiscussRecord.seven_days_d_count(current_user.pair)
     @y_dates = DiscussRecord.this_year_d_count(current_user.pair)
+    @tags_ratio = DiscussRecord.each_tags_count(current_user.pair)
   end
 
   def introduction

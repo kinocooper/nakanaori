@@ -12,29 +12,19 @@
     <div class="col-9 bg-info">
       <% unless @discussing_records.empty?   %>
         <h3>[ケンカ中！！5件]</h3>
-        <% @discussing_records.each do |record| %>
-          <p>
-            <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
-            <% record.tags.each do |tag| %>
-              <%= "[#{tag.name}]" %>
-            <% end %>
-          </p>
-        <% end %>
+        <%= render "discuss_records/index", records: @discussing_records %>
       <% end %>
 
       <h3>[最新ナカナオリ5件]</h3>
-      <% @closed_records.each do |record| %>
-        <p>
-          <%= link_to "#{record.title} #{record.created_at}", discuss_record_path(record) %>
-          <% record.tags.each do |tag| %>
-            <%= "[#{tag.name}]" %>
-          <% end %>
-        </p>
-      <% end %>
+      <%= render "discuss_records/index", records: @closed_records %>
 
       <%#= column_chart @w_dates %>
       <h3>[今年のナカナオリチャート]</h3>
       <%= column_chart @y_dates %>
+      <%#= pie_chart Yogurt.group(:flavor).count %>
+
+      <h3>[これまでのケンカテーマ傾向]</h3>
+      <%= pie_chart @tags_ratio %>
     </div>
   </div>
   <%#= paginate @items_page %>
