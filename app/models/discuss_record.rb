@@ -1,4 +1,5 @@
 class DiscussRecord < ApplicationRecord
+  # text型カラムのdefault値設定のため
   attribute :detail, :text, default: ''
 
   belongs_to :pair
@@ -7,6 +8,8 @@ class DiscussRecord < ApplicationRecord
   # 投稿はN個のタグをもつ
   has_many :tags, through: :tag_relationships
 
+  # レコードupdate後におしどりランクを判定
+  after_update :judgement_rank
 
   # 使用未定 テスト用
   def self.seven_days_d_count(current_pair)
@@ -52,6 +55,32 @@ class DiscussRecord < ApplicationRecord
       ratios.store("#{tag.name}",counts)
     end
     return ratios
+  end
+
+  def judgement_rank
+    count = pair.discuss_records.where(is_closed: true).count
+    
+    # case文は比較演算子の場合には適していない模様
+    # case count
+    # when count >= 15
+    #   pair.update(rank: "oshidori")
+    # when count >= 8
+    #   pair.update(rank: "kokko")
+    # when count >= 3
+    #   pair.update(rank: "hiyoko")
+    # when count >= 0
+    #   pair.update(rank: "tamago")
+    # end
+
+    if count >= 15
+      pair.update(rank: "oshidori")
+    elsif count >= 8
+      pair.update(rank: "kokko")
+    elsif count >= 3
+      pair.update(rank: "hiyoko")
+    else
+      pair.update(rank: "tamago")
+    end
   end
 
 end

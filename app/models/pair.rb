@@ -1,5 +1,7 @@
 class Pair < ApplicationRecord
+  # text型カラムのdefault値設定のため
   attribute :motto, :text, default: 'もっと～！'
+
   has_many :users, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :discuss_records, dependent: :destroy
@@ -15,5 +17,5 @@ class Pair < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-
+  
 end
