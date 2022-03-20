@@ -5,6 +5,9 @@ class Pair < ApplicationRecord
   has_many :discuss_records, dependent: :destroy
   has_one_attached :image
 
+  enum pair_type: {not_set: 0, married: 1, couple: 2, other: 3}
+  enum rank: {tamago: 0, hiyoko: 1, kokko: 2, oshidori: 3}
+
   def get_pair_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

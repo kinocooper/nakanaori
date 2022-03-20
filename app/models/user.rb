@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  enum oko_gauge: { nomal: 0, sad: 1, oko: 2, gekioko: 3, alone: 4 }
+
   belongs_to :pair, optional: true
   # 本人から見て
   belongs_to :partner, class_name: "User", optional: true

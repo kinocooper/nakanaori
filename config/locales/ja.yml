@@ -1,0 +1,22 @@
+  ja:
+    enums:
+      user:
+        oko_gauge:
+          nomal: "ふつう"
+          sad: "かなしい"
+          oko: "おこ"
+          gekioko: "激おこ"
+          alone: "一人にして"
+
+      pair:
+        pair_type:
+          not_set: ""
+          married: "夫婦"
+          couple: "カップル"
+          other: ""
+
+        rank:
+          tamago: "たまご"
+          hiyoko: "ひよっこ"
+          kokko: "こっこ"
+          oshidori: "おしどり"

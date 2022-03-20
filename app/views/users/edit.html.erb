@@ -9,7 +9,7 @@
   <%= f.email_field :email %>
 
   <%= f.label :oko_gauge, "おこゲージ" %>
-  <%= f.select :oko_gauge, options_for_select([['ふつう', 0], ['かなしい', 1], ['おこ', 2], ['激おこ', 3], ['一人にして', 4]]), {}, {class: 'oko_gauge_select'} %>
+  <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]], class: 'oko_gauge_select' %>
 
   <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
 

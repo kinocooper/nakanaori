@@ -13,12 +13,12 @@
         </tr>
         <tr>
           <th>おしどりランク</th>
-          <td><%= pair.rank %></td>
+          <td><%= pair.rank_i18n + pair.pair_type_i18n %></td>
         </tr>
         <% if current_user.pair.is_paired %>
           <tr>
             <th>相方のおこゲージ</th>
-            <td><%= current_user.partner.oko_gauge %></td>
+            <td><%= current_user.partner.oko_gauge_i18n %></td>
           </tr>
         <% end %>
       </table>
