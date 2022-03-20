@@ -1,9 +1,14 @@
 class Pair < ApplicationRecord
+  # text型カラムのdefault値設定のため
   attribute :motto, :text, default: 'もっと～！'
+
   has_many :users, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :discuss_records, dependent: :destroy
   has_one_attached :image
+
+  enum pair_type: {not_set: 0, married: 1, couple: 2, other: 3}
+  enum rank: {tamago: 0, hiyoko: 1, kokko: 2, oshidori: 3}
 
   def get_pair_image(width, height)
     unless image.attached?
@@ -12,5 +17,5 @@ class Pair < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-
+  
 end

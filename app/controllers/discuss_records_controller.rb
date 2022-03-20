@@ -33,7 +33,7 @@ class DiscussRecordsController < ApplicationController
 
   def edit
     @tag = Tag.new
-    @tags = Tag.all
+    @tags = current_user.pair.tags
     @discuss_record = DiscussRecord.find(params[:id])
     @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
   end

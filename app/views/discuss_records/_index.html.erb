@@ -1,0 +1,8 @@
+<% records.each do |record| %>
+  <p>
+    <%= link_to "#{record.title} #{record.created_at.strftime("%Y年 %m月 %d日")}", discuss_record_path(record) %>
+    <% record.tags.each do |tag| %>
+      <%= "[#{tag.name}]" %>
+    <% end %>
+  </p>
+<% end %>
