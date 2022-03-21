@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get "pairs/join", as: "join"
   patch "pairs/pairing", as: "pairing"
   get 'pairs/invite', as: "invite"
-  post "pairs/send", as: "send"
+  get "pairs/send_mail", as: "send_mail"
   get 'pairs/complete', as: "complete"
   get 'pairs/confirm', as: "p_confirm"
 

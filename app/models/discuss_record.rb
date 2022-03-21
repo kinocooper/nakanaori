@@ -58,6 +58,7 @@ class DiscussRecord < ApplicationRecord
   end
 
   def judgement_rank
+    # このメソッドが呼び出される時点でモデルはpairの情報を持っている…から、『pair』を使える、らしい
     count = pair.discuss_records.where(is_closed: true).count
     
     # case文は比較演算子の場合には適していない模様

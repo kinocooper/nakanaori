@@ -21,9 +21,28 @@ class PairsController < ApplicationController
     @pair = Pair.new
   end
 
+  # 招待前 メールアドレス入力画面
+  def invite
+  end
+
+  # フォームに入力されたアドレスへメール送信
+  def send_mail
+    @email = params[:email]
+    @name = current_user.name
+    # PairMailerにフォームに入力したemailとログイン中ユーザのnameの値を渡してwelcomeアクションを呼び出し⇒メール送信
+    PairMailer.with(email: @email, name: @name).welcome.deliver_later
+    redirect_to complete_path
+  end
+
+  # 招待メール送信完了画面
+  def complete
+  end
+
+  # 招待される側 認証画面
   def join
   end
 
+  # 認証チェック
   def pairing
     join_pair_id = params[:pair_id]
     join_keyword = params[:keyword]
@@ -99,12 +118,7 @@ class PairsController < ApplicationController
     redirect_to about_path, notice:"全情報を削除しました。ご利用ありがとうございました。"
   end
 
-  def invite
-  end
-
-  def complete
-  end
-
+  # ペア削除 確認画面
   def confirm
   end
 
