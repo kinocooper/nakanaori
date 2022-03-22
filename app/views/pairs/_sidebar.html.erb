@@ -1,31 +1,34 @@
-    <div class="col-3 bg-success">
-      <h3>ペア情報</h3>
-      <table class="table">
-        <tr>
-          <th colspan="2">
-            <%= image_tag pair.get_pair_image(200,200) %><br>
-            <%= pair.name %>
-          </th>
-        </tr>
-        <tr>
-          <th>モットー</th>
-          <td><%= pair.motto %></td>
-        </tr>
-        <tr>
-          <th>おしどりランク</th>
-          <td><%= pair.rank_i18n + pair.pair_type_i18n %></td>
-        </tr>
-        <% if current_user.pair.is_paired %>
+    <div class="col-3">
+      <div class="border rounded px-2">
+        <h3 class="text-center"><%= pair.name %></h3>
+        <table class="table">
           <tr>
-            <th>相方のおこゲージ</th>
-            <td><%= current_user.partner.oko_gauge_i18n %></td>
+            <th colspan="2" class="border rounded">
+              <%= image_tag pair.get_pair_image(200,200),class:"mx-auto d-block" %><br>
+            </th>
           </tr>
-        <% end %>
-      </table>
+          <tr>
+            <th colspan="2" class="mx-auto">ふたりの標語！</th>
+          </tr>
+          <tr>
+            <td colspan="2" class="align-middle"><%= pair.motto %></td>
+          </tr>
+          <tr>
+            <th style="width:50%">おしどり<br>ランク</th>
+            <td class="align-middle"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
+          </tr>
+          <% if current_user.pair.is_paired %>
+            <tr>
+              <th style="width:40%"><%= current_user.partner.name %>さんの<br>おこゲージ</th>
+              <td class="align-middle"><%= current_user.partner.oko_gauge_i18n %></td>
+            </tr>
+          <% end %>
+        </table>
 
-      <%= link_to "ペア編集", edit_pair_path, class:"btn btn-block btn-secondary my-1" %>
-      <%= link_to "ユーザー編集", edit_user_path, class:"btn btn-block btn-secondary my-1" %>
-      <% unless current_user.pair.is_paired %>
-        <%= link_to "ペア招待", invite_path, class:"btn btn-block btn-secondary my-1" %>
-      <% end %>
+        <%= link_to "ペア編集", edit_pair_path, class:"btn btn-block btn-outline-secondary" %>
+        <%= link_to "ユーザー編集", edit_user_path, class:"btn btn-block btn-outline-secondary my-2" %>
+        <% unless current_user.pair.is_paired %>
+          <%= link_to "ペア招待", invite_path, class:"btn btn-block btn-outline-info my-2" %>
+        <% end %>
+      </div>
     </div>

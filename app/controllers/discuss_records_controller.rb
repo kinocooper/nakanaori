@@ -2,6 +2,7 @@ class DiscussRecordsController < ApplicationController
   def new
     @discuss_record = DiscussRecord.new
     @my_opinion = PersonalOpinion.new
+    @pair = current_user.pair
   end
 
   def create
@@ -29,6 +30,7 @@ class DiscussRecordsController < ApplicationController
     @discuss_record = DiscussRecord.find(params[:id])
     @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
     @partners_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.partner_id)
+    @pair = current_user.pair
   end
 
   def edit
@@ -36,6 +38,7 @@ class DiscussRecordsController < ApplicationController
     @tags = current_user.pair.tags
     @discuss_record = DiscussRecord.find(params[:id])
     @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
+    @pair = current_user.pair
   end
 
   def update
@@ -54,15 +57,17 @@ class DiscussRecordsController < ApplicationController
 
   def reconcile
     discuss_record = DiscussRecord.find(params[:id])
-    discuss_record.update(is_closed: TRUE)
+    discuss_record.update(is_closed: true)
     redirect_to congratulations_path, notice: "ナカナオリおめでとう＾＾"
   end
 
   def congratulations
+    @pair = current_user.pair
   end
 
   def index
     @discuss_records = current_user.pair.discuss_records.order("created_at DESC")
+    @pair = current_user.pair
   end
 
 

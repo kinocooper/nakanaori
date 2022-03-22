@@ -1,28 +1,42 @@
-<h2>[<%= @discuss_record.title %>]</h2>
+<div class = "container">
+  <div class = "row my-3">
+      <h2><%= @discuss_record.title %></h2>
+  </div>
 
-<% @discuss_record.tags.each do |tag| %>
-  <%= "[#{tag.name}]" %>
-<% end %>
+  <div class = "row">
 
-<p>ケンカの詳細</p>
-<p><%= @discuss_record.detail %></p>
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-<p>[自分の主張]</p>
-<p><%= @my_opinion.claim %></p>
-<p>[自分のまとめ意見]</p>
-<p><%= @my_opinion.conclude %></p>
+    <div class="col-9">
+      <% @discuss_record.tags.each do |tag| %>
+        <%= "[#{tag.name}]" %>
+      <% end %>
 
-<% unless current_user.partner == nil %>
-  <p>[<%= current_user.partner.name %>さんの主張]</p>
-  <p><%= @partners_opinion.claim %></p>
-  <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
-  <p><%= @partners_opinion.conclude %></p>
-<% end %>
+      <p>ケンカの詳細</p>
+      <p><%= @discuss_record.detail %></p>
 
-<% unless @discuss_record.is_closed %>
-  <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
-<% else %>
-  <p>ナカナオリ済</p>
-<% end %>
-<%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
+      <p>[自分の主張]</p>
+      <p><%= @my_opinion.claim %></p>
+      <p>[自分のまとめ意見]</p>
+      <p><%= @my_opinion.conclude %></p>
+
+      <% unless current_user.partner == nil %>
+        <p>[<%= current_user.partner.name %>さんの主張]</p>
+        <p><%= @partners_opinion.claim %></p>
+        <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
+        <p><%= @partners_opinion.conclude %></p>
+      <% end %>
+
+      <% unless @discuss_record.is_closed %>
+        <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
+      <% else %>
+        <p>ナカナオリ済</p>
+      <% end %>
+      <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
 <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>
+    </div>
+  </div>
+</div>
+
+
+

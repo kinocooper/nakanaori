@@ -4,12 +4,12 @@ class PairsController < ApplicationController
 
   def top
     @pair = current_user.pair
-    @discussing_records = current_user.pair.discuss_records.where(is_closed: FALSE).order("created_at DESC").limit(5)
-    @closed_records = DiscussRecord.where(pair_id: current_user.pair.id).where(is_closed: TRUE).order("created_at DESC").limit(5)
+    @discussing_records = current_user.pair.discuss_records.where(is_closed: false).order("created_at DESC").limit(5)
+    @closed_records = DiscussRecord.where(pair_id: current_user.pair.id).where(is_closed: true).order("created_at DESC").limit(5)
     # @limited_span_records = DiscussRecord.where("created_at >= ?",Date.parse('2022/03/10')).where("created_at <= ?",Date.parse('2022/03/16'))
     # @w_record_counts =
     # Chartkickに渡すハッシュを@dates変数に
-    @w_dates = DiscussRecord.seven_days_d_count(current_user.pair)
+    # @w_dates = DiscussRecord.seven_days_d_count(current_user.pair)
     @y_dates = DiscussRecord.this_year_d_count(current_user.pair)
     @tags_ratio = DiscussRecord.each_tags_count(current_user.pair)
   end
@@ -23,19 +23,22 @@ class PairsController < ApplicationController
 
   # 招待前 メールアドレス入力画面
   def invite
+    @pair = current_user.pair
   end
 
   # フォームに入力されたアドレスへメール送信
   def send_mail
-    @email = params[:email]
-    @name = current_user.name
+    email = params[:email]
+    name = current_user.name
+    pair_id = current_user.pair_id
     # PairMailerにフォームに入力したemailとログイン中ユーザのnameの値を渡してwelcomeアクションを呼び出し⇒メール送信
-    PairMailer.with(email: @email, name: @name).welcome.deliver_later
+    PairMailer.with(email: email, name: name, pair_id: pair_id).welcome.deliver_later
     redirect_to complete_path
   end
 
   # 招待メール送信完了画面
   def complete
+    @pair = current_user.pair
   end
 
   # 招待される側 認証画面
@@ -52,7 +55,7 @@ class PairsController < ApplicationController
       pair = Pair.find_by(id: join_pair_id)
 
       # そのペアがまだ未ペアリングであるか
-      if pair.is_paired == FALSE
+      if pair.is_paired == false
 
         # キーワードが正しいか
         if pair.keyword == join_keyword
@@ -71,7 +74,7 @@ class PairsController < ApplicationController
           person.partner.update(partner_id: person.id)
 
           # 4 ペアの_is_pairedステータスを更新
-          pair.update(is_paired: TRUE)
+          pair.update(is_paired: true)
 
           redirect_to root_path, notice: 'ペアリングしました！'
         else
@@ -120,6 +123,7 @@ class PairsController < ApplicationController
 
   # ペア削除 確認画面
   def confirm
+    @pair = current_user.pair
   end
 
 

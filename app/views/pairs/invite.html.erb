@@ -1,9 +1,22 @@
-<h3>めあどの入力ふぉーーーーーーむ</h3>
+<div class = "container">
+  <div class = "row my-3">
+      <h2>招待メールを送る</h2>
+  </div>
 
-<%= form_with url: send_mail_path, method: :get, local: true do |f| %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <div class = "row">
 
-  <%= f.submit "招待メール送信" %>
-<% end %>
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9">
+      <%= form_with url: send_mail_path, method: :get, local: true do |f| %>
+        <%= f.label :email %>
+        <%= f.text_field :email %>
+      
+        <%= f.submit "招待メール送信" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
 

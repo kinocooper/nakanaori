@@ -1,4 +1,16 @@
-<h2>新規ケンカ投稿！</h2>
+<div class = "container">
+  <div class = "row my-3">
+    <h2>新規ケンカ投稿！</h2>
+  </div>
 
-<%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion %>
+  <div class = "row">
+
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9">
+      <%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion %>
+    </div>
+  </div>
+</div>
+
 

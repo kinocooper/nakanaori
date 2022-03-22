@@ -7,6 +7,7 @@ class PairMailer < ApplicationMailer
       @url = ENV["PROD_ROOT"]
     end
     @name = params[:name]
+    @pair_id = params[:pair_id]
     email = params[:email]
     # @user = params[:user]
     # @url  = 'https://www.google.com/'

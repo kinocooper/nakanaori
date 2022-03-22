@@ -1,11 +1,22 @@
-<h2>ぺありんぐ</h2>
+<div class = "container">
+  <div class = "row my-3">
+      <h2>ペアリング</h2>
+  </div>
 
-<%= form_with url:pairing_path, method: :patch, local:true do |f| %>
+  <div class = "row">
 
-  <%= f.label :pair_id, "ペアID" %>
-  <%= f.number_field :pair_id %>
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-  <%= f.label :keyword, "キーワード" %>
-  <%= f.text_field :keyword %>
-  <%= f.submit "ぺありんぐ", class: 'btn btn-secondary' %>
-<% end %>
+    <div class="col-9">
+      <%= form_with url:pairing_path, method: :patch, local:true do |f| %>
+
+        <%= f.label :pair_id, "ペアID" %>
+        <%= f.number_field :pair_id %>
+
+        <%= f.label :keyword, "キーワード" %>
+        <%= f.text_field :keyword %>
+        <%= f.submit "ぺありんぐ", class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
