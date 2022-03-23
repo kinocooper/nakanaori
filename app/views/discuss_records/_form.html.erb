@@ -1,19 +1,33 @@
-<%= form_with model: discuss_record, local: true do |f| %>
+<!--<div class="containar">-->
+<!--  <div class="row no-gutters">-->
+<div class="col-9 mx-2 shadow rounded px-0 my-5">
+  <!--<h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>-->
+  <h4 class="bg-light p-4 mb-0 text-center">
+    <%= "新規ケンカ投稿" if discuss_record.title == "" %>
+    <%= discuss_record.title %>
+  </h4>
+  <div class="form-body p-4">
 
-  <%= f.label :title, "タイトル" %>
-  <%= f.text_field :title %>
+    <%= render "layouts/error_message", obj: discuss_record %>
 
-  <%= f.label :detail, "ケンカの内容" %>
-  <%= f.text_area :detail %>
+    <%= form_with model: discuss_record, local: true do |f| %>
 
-  <%= f.fields_for my_opinion do |i| %>
-    <%= i.label :claim, "自分の主張" %>
-    <%= i.text_area :claim %>
+      <%= f.label :title, "ケンカのタイトル" %>
+      <%= f.text_field :title, class:"form-control mb-3" %>
 
-    <%= i.label :conclude, "自分の反省・まとめ" %>
-    <%= i.text_area :conclude %>
-  <% end %>
+      <%= f.label :detail, "ケンカの内容" %>
+      <%= f.text_area :detail, rows:"5", class:"form-control mb-3" %>
 
-  <%= f.submit %>
+      <%= f.fields_for my_opinion do |i| %>
+        <%= i.label :claim, "自分の主張" %>
+        <%= i.text_area :claim, rows:"5", class:"form-control mb-3" %>
 
-<% end %>
+        <%= i.label :conclude, "自分の反省・まとめ" %>
+        <%= i.text_area :conclude, rows:"5", class:"form-control mb-3" %>
+      <% end %>
+
+      <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+
+    <% end %>
+  </div>
+</div>
