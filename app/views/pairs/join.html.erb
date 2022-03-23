@@ -5,8 +5,6 @@
 
   <div class = "row">
 
-    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
-
     <div class="col-9">
       <%= form_with url:pairing_path, method: :patch, local:true do |f| %>
 

@@ -1,23 +1,23 @@
 <div class="col-3">
   <div class="row">
-    <div class="col-12 border rounded-lg shadow sidebar pt-2 pb-3">
+    <div class="shadow sidebar col-12 pt-3 pb-3">
       <h3 class="text-center sidebar__name my-2"><%= pair.name %></h3>
-            <%= image_tag pair.get_pair_image(200,200),class:"mx-auto d-block rounded-circle" %><br>
+      <%= image_tag pair.get_pair_image(200,200),class:"mx-auto d-block rounded-circle" %><br>
       <table class="table">
         <tr>
-          <th colspan="2" class="mx-auto">ふたりの標語</th>
+          <th colspan="2" class="text-center">ふたりの標語</th>
         </tr>
         <tr>
-          <td colspan="2" class="align-middle"><%= pair.motto %></td>
+          <td colspan="2" class="text-center"><%= pair.motto %></td>
         </tr>
         <tr>
-          <th class="w-50">おしどり<br>ランク</th>
-          <td class="align-middle"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
+          <th class="w-50 p-1 align-middle">おしどり<br>ランク</th>
+          <td class="w-50 p-1 align-middle"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
         </tr>
         <% if current_user.pair.is_paired %>
           <tr>
-            <th class="w-50"><%= current_user.partner.name %>さんの<br>おこゲージ</th>
-            <td class="align-middle"><%= current_user.partner.oko_gauge_i18n %></td>
+            <th class="w-50 p-1 align-middle"><%= current_user.partner.name %>さんの<br>おこゲージ</th>
+            <td class="w-50 p-1 align-middle"><%= current_user.partner.oko_gauge_i18n %></td>
           </tr>
         <% end %>
       </table>

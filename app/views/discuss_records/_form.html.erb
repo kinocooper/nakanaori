@@ -1,33 +1,33 @@
-<!--<div class="containar">-->
-<!--  <div class="row no-gutters">-->
-<div class="col-9 mx-2 shadow rounded px-0 my-5">
-  <!--<h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>-->
-  <h4 class="bg-light p-4 mb-0 text-center">
-    <%= "新規ケンカ投稿" if discuss_record.title == "" %>
-    <%= discuss_record.title %>
-  </h4>
-  <div class="form-body p-4">
+<div class="row">
+  <div class="col-10 col-offset-2 mx-auto shadow px-0 form">
+    <!--<h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>-->
+    <h3 class="bg-light p-4 mb-0 text-center form__top">
+      <%= "新規ケンカ投稿" if discuss_record.title == "" %>
+      <%= discuss_record.title %>
+    </h3>
+    <div class="form-body p-4">
 
-    <%= render "layouts/error_message", obj: discuss_record %>
+      <%= render "layouts/error_message", obj: discuss_record %>
 
-    <%= form_with model: discuss_record, local: true do |f| %>
+      <%= form_with model: discuss_record, local: true do |f| %>
 
-      <%= f.label :title, "ケンカのタイトル" %>
-      <%= f.text_field :title, class:"form-control mb-3" %>
+        <%= f.label :title, "ケンカのタイトル" %>
+        <%= f.text_field :title, class:"form-control mb-3" %>
 
-      <%= f.label :detail, "ケンカの内容" %>
-      <%= f.text_area :detail, rows:"5", class:"form-control mb-3" %>
+        <%= f.label :detail, "ケンカの内容" %>
+        <%= f.text_area :detail, rows:"5", class:"form-control mb-3" %>
 
-      <%= f.fields_for my_opinion do |i| %>
-        <%= i.label :claim, "自分の主張" %>
-        <%= i.text_area :claim, rows:"5", class:"form-control mb-3" %>
+        <%= f.fields_for my_opinion do |i| %>
+          <%= i.label :claim, "自分の主張" %>
+          <%= i.text_area :claim, rows:"5", class:"form-control mb-3" %>
 
-        <%= i.label :conclude, "自分の反省・まとめ" %>
-        <%= i.text_area :conclude, rows:"5", class:"form-control mb-3" %>
+          <%= i.label :conclude, "自分の反省・まとめ" %>
+          <%= i.text_area :conclude, rows:"5", class:"form-control mb-3" %>
+        <% end %>
+
+        <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
+
       <% end %>
-
-      <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
-
-    <% end %>
+    </div>
   </div>
 </div>

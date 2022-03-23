@@ -1,35 +1,42 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2>ペア情報編集</h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
-      <%= form_with model: @pair, local: true do |f| %>
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
 
-        <%= f.label :name, "ペア名" %>
-        <%= f.text_field :name %>
+          <%= form_with model: @pair, local: true do |f| %>
 
-        <%= f.label :image, "ペア画像" %>
-        <%= f.file_field :image, accept: "image/*" %>
+            <%= f.label :name, "ペア名" %>
+            <%= f.text_field :name %>
 
-        <%= f.label :motto, "ペアのモットー！" %>
-        <%= f.text_field :motto %>
+            <%= f.label :image, "ペア画像" %>
+            <%= f.file_field :image, accept: "image/*" %>
 
-        <%= f.label :pair_type, "関係性" %>
-        <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]] %>
+            <%= f.label :motto, "ペアのモットー！" %>
+            <%= f.text_field :motto %>
 
-        <%= f.label :keyword, "キーワード" %>
-        <%= f.text_field :keyword %>
+            <%= f.label :pair_type, "関係性" %>
+            <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]] %>
 
-        <%= f.submit "ペア情報更新！" %>
+            <%= f.label :keyword, "キーワード" %>
+            <%= f.text_field :keyword %>
 
-      <% end %>
+            <%= f.submit "ペア情報更新！" %>
 
-      <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-danger" %>
+          <% end %>
+
+          <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-danger" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

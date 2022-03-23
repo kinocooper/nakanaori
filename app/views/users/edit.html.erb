@@ -1,29 +1,36 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2>ユーザー情報編集</h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
-      <%= form_with model: @user, local: true do |f| %>
-      
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      
-        <%= f.label :email, "メールアドレス" %>
-        <%= f.email_field :email %>
-      
-        <%= f.label :oko_gauge, "おこゲージ" %>
-        <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]], class: 'oko_gauge_select' %>
-      
-        <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
-      
-      <% end %>
-      
-      <%= link_to "退会する？", u_confirm_path, class:"btn btn-danger" %>←片割れだけの退会は複雑なので、一旦後回しにする
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+
+          <%= form_with model: @user, local: true do |f| %>
+
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+
+            <%= f.label :email, "メールアドレス" %>
+            <%= f.email_field :email %>
+
+            <%= f.label :oko_gauge, "おこゲージ" %>
+            <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]], class: 'oko_gauge_select' %>
+
+            <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
+
+          <% end %>
+
+          <%= link_to "退会する？", u_confirm_path, class:"btn btn-danger" %>←片割れだけの退会は複雑なので、一旦後回しにする
+        </div>
+      </div>
     </div>
   </div>
 </div>

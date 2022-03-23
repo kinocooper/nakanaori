@@ -13,6 +13,11 @@ class TagsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def show
+    @pair = current_user.pair
+    @tag = Tag.find(params[:id])
+    @discuss_records = @tag.discuss_records
+  end
 
   private
 

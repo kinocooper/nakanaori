@@ -1,8 +1,22 @@
-<% records.each do |record| %>
-  <p>
-    <%= link_to "#{record.title} #{record.created_at.strftime("%Y年 %m月 %d日")}", discuss_record_path(record) %>
-    <% record.tags.each do |tag| %>
-      <%= "[#{tag.name}]" %>
-    <% end %>
-  </p>
-<% end %>
+<table class="table table-hover">
+  <% if records.empty? %>
+    <p>まずはケンカを投稿しましょう！</p>
+    <%= link_to "投稿する！", new_discuss_record_path, class:"btn btn-info btn-lg" %>
+  <% end %>
+  <% records.each do |record| %>
+    <tr>
+      <td class="w-50">
+        <%= link_to "#{record.title}", discuss_record_path(record) %>
+        <span class="small text-dark"><%= record.created_at.strftime("%Y年 %m月 %d日") %></span>
+      </td>
+      <td class="w-50">
+        <% record.tags.each do |tag| %>
+          <span class="tag"><%= tag.name %></span>
+        <% end %>
+      </td>
+      <td>
+
+      </td>
+    </tr>
+  <% end %>
+</table>

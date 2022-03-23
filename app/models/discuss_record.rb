@@ -15,9 +15,9 @@ class DiscussRecord < ApplicationRecord
   def self.seven_days_d_count(current_pair)
     # 何日の何時～何日の何時までか　『グラフ対象全体』の時間
     start_date = Date.current - 6 # 現在時刻から24時間×6日前
-    p start_date # デバッグ用
+    # p start_date # デバッグ用
     end_date = Date.current #現在時刻
-    p end_date # デバッグ用
+    # p end_date # デバッグ用
     dates = {} #データを格納するハッシュを用意
     # 7日間を1日ずつeach
     # この"date"は『もし時間に変換すると』あくまで0時0分0秒の一時点を示している

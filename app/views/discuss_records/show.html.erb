@@ -1,39 +1,64 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2><%= @discuss_record.title %></h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
-
     <div class="col-9">
-      <% @discuss_record.tags.each do |tag| %>
-        <%= "[#{tag.name}]" %>
-      <% end %>
 
-      <p>ケンカの詳細</p>
-      <p><%= @discuss_record.detail %></p>
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
 
-      <p>[自分の主張]</p>
-      <p><%= @my_opinion.claim %></p>
-      <p>[自分のまとめ意見]</p>
-      <p><%= @my_opinion.conclude %></p>
 
-      <% unless current_user.partner == nil %>
-        <p>[<%= current_user.partner.name %>さんの主張]</p>
-        <p><%= @partners_opinion.claim %></p>
-        <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
-        <p><%= @partners_opinion.conclude %></p>
-      <% end %>
+          <%= form_with model: @tag do |f| %>
+            <%= f.label :name, "新しいタグ名" %>
+            <%= f.text_field :name %>
+            <%= f.submit "タグを作成" %>
+          <% end %>
 
-      <% unless @discuss_record.is_closed %>
-        <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
-      <% else %>
-        <p>ナカナオリ済</p>
-      <% end %>
-      <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
-<%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>
+          <br>
+          <br>
+
+          [タグ一覧]
+          <% @tags.each do |tag| %>
+            <%# if TagRelationship.exists?() %>
+            <% if @discuss_record.tag_relationships.exists?(tag_id: tag.id) %>
+              <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"tag" %>
+            <% else %>
+              <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
+            <% end %>
+
+            <%= link_to "[×]", tag_path(tag.id), method: :delete %>
+          <% end %>
+
+          <p>ケンカの詳細</p>
+          <p><%= @discuss_record.detail %></p>
+
+          <p>[自分の主張]</p>
+          <p><%= @my_opinion.claim %></p>
+          <p>[自分のまとめ意見]</p>
+          <p><%= @my_opinion.conclude %></p>
+
+          <% unless current_user.partner == nil %>
+            <p>[<%= current_user.partner.name %>さんの主張]</p>
+            <p><%= @partners_opinion.claim %></p>
+            <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
+            <p><%= @partners_opinion.conclude %></p>
+          <% end %>
+
+          <% unless @discuss_record.is_closed %>
+            <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
+          <% else %>
+            <p>ナカナオリ済</p>
+          <% end %>
+          <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
+          <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

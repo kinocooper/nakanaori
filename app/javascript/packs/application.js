@@ -13,8 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"
 import "chartkick/chart.js"
-import "../stylesheets/test.css"
-import "../stylesheets/test2.scss"
+import "../stylesheets/mystyle.scss"
 
 Rails.start()
 Turbolinks.start()
