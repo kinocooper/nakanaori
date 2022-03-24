@@ -14,27 +14,38 @@
         <div class="col-10 col-offset-2 mx-auto">
 
           <%= form_with model: @pair, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :name, "ペア名" %>
+              <%= f.text_field :name, class:"form-control" %>
+            </div>
 
-            <%= f.label :name, "ペア名" %>
-            <%= f.text_field :name %>
+            <div class="form-group">
+              <%= f.label :image, "ペア画像" %>
+              <%= f.file_field :image, accept: "image/*", class:"form-control" %>
+            </div>
 
-            <%= f.label :image, "ペア画像" %>
-            <%= f.file_field :image, accept: "image/*" %>
+            <div class="form-group">
+              <%= f.label :motto, "ペアのモットー！" %>
+              <%= f.text_field :motto, class:"form-control" %>
+            </div>
 
-            <%= f.label :motto, "ペアのモットー！" %>
-            <%= f.text_field :motto %>
+            <div class="form-group">
+              <%= f.label :pair_type, "関係性" %>
+              <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]],{} , class:"form-control" %>
+            </div>
 
-            <%= f.label :pair_type, "関係性" %>
-            <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]] %>
+            <div class="form-group">
+              <%= f.label :keyword, "ペアリングキーワード" %>
+              <%= f.text_field :keyword, class:"form-control" %>
+            </div>
 
-            <%= f.label :keyword, "キーワード" %>
-            <%= f.text_field :keyword %>
-
-            <%= f.submit "ペア情報更新！" %>
+            <%= f.submit "ペア情報更新！", class:"btn btn-info btn-lg" %>
 
           <% end %>
 
-          <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-danger" %>
+          <div class="text-right">
+            <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-outline-danger align-items-bottom  btn-sm" %>
+          </div>
         </div>
       </div>
     </div>

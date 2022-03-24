@@ -1,24 +1,30 @@
 <div class = "container">
   <div class = "row my-3">
-      <h2>退会確認</h2>
+    <div class="col-3 page-top p-0">
+      <h2>個人退会確認</h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
-      <p>本当に退会しますか？</p>
-      <ul>
-        <li><%= current_user.name %>さんだけが退会します。</li>
-        <li>ペアに関する過去の投稿などは存続します。</li>
-        <li>パートナーのアカウント・ペア情報は存続します。</li>
-        <li>パートナーが利用を続ける限り、このペアに復帰することができます。</li>
-      </ul>
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
 
-      <%= link_to "退会する", disabling_path, method: :patch, class:"btn btn-danger" %>←めんどいので一旦あと回しで・・・</p>
+          <p class="lead">本当に退会しますか？</p>
+          <ul>
+            <li><%= current_user.name %>さんだけが退会します。</li>
+            <li>パートナーのアカウント・ペア情報・過去の投稿は存続します。</li>
+            <li>パートナーが利用を続ける限り、このペアに復帰することができます。</li>
+          </ul>
 
-      <p>ペア情報ごと完全退会する場合は<%= link_to "こちら", p_confirm_path %></p>
+          <%= link_to "退会する", disabling_path, method: :patch, class:"btn btn-danger" %>←めんどいので一旦あと回しで・・・</p>
+
+          <p>ペア情報ごと完全退会する場合は<%= link_to "こちら", p_confirm_path %></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

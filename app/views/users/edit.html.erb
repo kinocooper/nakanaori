@@ -15,20 +15,29 @@
 
           <%= form_with model: @user, local: true do |f| %>
 
-            <%= f.label :name %>
-            <%= f.text_field :name %>
+            <div class="form-group">
+              <%= f.label :name %>
+              <%= f.text_field :name, class:"form-control" %>
+            </div>
 
-            <%= f.label :email, "メールアドレス" %>
-            <%= f.email_field :email %>
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス" %>
+              <%= f.email_field :email, class:"form-control" %>
+            </div>
 
-            <%= f.label :oko_gauge, "おこゲージ" %>
-            <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]], class: 'oko_gauge_select' %>
+            <div class="form-group">
+              <%= f.label :oko_gauge, "おこゲージ" %>
+              <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]],{}, class:"form-control" %>
+            </div>
 
-            <%= f.submit "ユーザー情報更新！", class:"btn btn-success" %>
+            <%= f.submit "ユーザー情報更新！", class:"btn btn-info btn-lg" %>
 
           <% end %>
 
-          <%= link_to "退会する？", u_confirm_path, class:"btn btn-danger" %>←片割れだけの退会は複雑なので、一旦後回しにする
+          <div class="text-right">
+            <%= link_to "退会する？", u_confirm_path, class:"btn btn-outline-danger btn-sm" %><br>
+            片割れだけの退会は複雑なので、一旦後回しにする👆
+          </div>
         </div>
       </div>
     </div>

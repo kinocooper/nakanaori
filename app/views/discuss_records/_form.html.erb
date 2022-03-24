@@ -10,19 +10,26 @@
       <%= render "layouts/error_message", obj: discuss_record %>
 
       <%= form_with model: discuss_record, local: true do |f| %>
+        <div class="form-group">
+          <%= f.label :title, "ケンカのタイトル" %>
+          <%= f.text_field :title, class:"form-control mb-3" %>
+        </div>
 
-        <%= f.label :title, "ケンカのタイトル" %>
-        <%= f.text_field :title, class:"form-control mb-3" %>
-
+        <div class="form-group">
         <%= f.label :detail, "ケンカの内容" %>
         <%= f.text_area :detail, rows:"5", class:"form-control mb-3" %>
+        </div>
 
         <%= f.fields_for my_opinion do |i| %>
-          <%= i.label :claim, "自分の主張" %>
-          <%= i.text_area :claim, rows:"5", class:"form-control mb-3" %>
+          <div class="form-group">
+            <%= i.label :claim, "自分の主張" %>
+            <%= i.text_area :claim, rows:"5", class:"form-control mb-3" %>
+          </div>
 
-          <%= i.label :conclude, "自分の反省・まとめ" %>
-          <%= i.text_area :conclude, rows:"5", class:"form-control mb-3" %>
+          <div class="form-group">
+            <%= i.label :conclude, "自分の反省・まとめ" %>
+            <%= i.text_area :conclude, rows:"5", class:"form-control mb-3" %>
+          </div>
         <% end %>
 
         <%= f.submit '投稿', class:"btn btn-lg btn-block btn-info mt-4" %>
