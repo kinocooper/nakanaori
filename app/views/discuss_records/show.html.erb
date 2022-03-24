@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row my-3">
     <div class="col-3 page-top p-0">
-      <h2><%= @discuss_record.title %></h2>
+      <h2>ケンカの詳細</h2>
     </div>
   </div>
 
@@ -13,55 +13,72 @@
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
 
-
-          <%= form_with model: @tag do |f| %>
-            <%= f.label :name, "新しいタグ名" %>
-            <%= f.text_field :name %>
-            <%= f.submit "タグを作成" %>
-          <% end %>
-
-          <br>
-          <br>
-
-          [タグ一覧]
-          <% @tags.each do |tag| %>
-            <%# if TagRelationship.exists?() %>
-            <% if @discuss_record.tag_relationships.exists?(tag_id: tag.id) %>
-              <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"tag" %>
-            <% else %>
-              <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
+<!--タグ関係-->
+          <div class="tag-edit mb-4">
+            <%= form_with model: @tag do |f| %>
+              <%= f.label :name, "新しいタグ名" %>
+              <%= f.text_field :name %>
+              <%= f.submit "タグを作成" %>
             <% end %>
 
-            <%= link_to "[×]", tag_path(tag.id), method: :delete %>
-          <% end %>
+            <br>
 
-          <p>ケンカの詳細</p>
-          <p><%= @discuss_record.detail %></p>
+            [タグ一覧]
+            <% @tags.each do |tag| %>
+              <%# if TagRelationship.exists?() %>
+              <% if @discuss_record.tag_relationships.exists?(tag_id: tag.id) %>
+                <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"tag" %>
+              <% else %>
+                <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
+              <% end %>
 
-          <p>[自分の主張]</p>
-          <p><%= @my_opinion.claim %></p>
-          <p>[自分のまとめ意見]</p>
-          <p><%= @my_opinion.conclude %></p>
+              <%= link_to "[×]", tag_path(tag.id), method: :delete %>
+            <% end %>
+          </div>
+<!--タグ関係-->
 
-          <% unless current_user.partner == nil %>
-            <p>[<%= current_user.partner.name %>さんの主張]</p>
-            <p><%= @partners_opinion.claim %></p>
-            <p>[<%= current_user.partner.name %>さんのまとめ意見]</p>
-            <p><%= @partners_opinion.conclude %></p>
-          <% end %>
+          <div class="shadow px-0 form">
+            <!--<h5 class="text-dark bg-light p-4 mb-0">画像投稿フォーム</h5>-->
+            <h3 class="bg-light p-4 mb-0 text-center form__top">
+              <%= @discuss_record.title %>
+            </h3>
+            <div class="show-body p-4">
+              <div class="detail mb-5">
+                <h4 class="show-body__title">ケンカの内容</h4>
+                <p><%= @discuss_record.detail %></p>
+              </div>
 
-          <% unless @discuss_record.is_closed %>
-            <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-primary" %>
-          <% else %>
-            <p>ナカナオリ済</p>
-          <% end %>
-          <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-success" %>
-          <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-success" %>
+              <div class="claim mb-5">
+                <h4 class="show-body__my-opinion">自分の主張</h4>
+                <p><%= @my_opinion.claim %></p>
+
+              <% unless current_user.partner == nil %>
+                <h4 class="show-body__p-opinion"><%= current_user.partner.name %>さんの主張</h4>
+                <p><%= @partners_opinion.claim %></p>
+              <% end %>
+              </div>
+
+              <div class="conclude mb-5">
+                <h4 class="show-body__my-opinion">自分の反省</h4>
+                <p><%= @my_opinion.conclude %></p>
+
+              <% unless current_user.partner == nil %>
+                <h4 class="show-body__p-opinion"><%= current_user.partner.name %>さんの反省</h4>
+                <p><%= @partners_opinion.conclude %></p>
+              <% end %>
+              </div>
+
+              <% unless @discuss_record.is_closed %>
+                <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+              <% else %>
+                <p>ナカナオリ済</p>
+              <% end %>
+              <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-secondary" %>
+              <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-outline-danger" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-

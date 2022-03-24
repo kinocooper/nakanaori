@@ -1,13 +1,15 @@
 <div class = "container">
   <div class = "row my-3">
-    <h2>ケンカ編集！</h2>
+    <div class="col-3 page-top p-0">
+      <h2>ケンカ編集！</h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
+    <div class="col-9 main-content">
       <%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion %>
     </div>
   </div>
