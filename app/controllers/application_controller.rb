@@ -23,12 +23,12 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :partner_id, :pair_id])
   end
-  
-  
+
+
   def pair_nil_check
     if current_user.pair_id == nil
-      redirect_to introduction_path
+      redirect_to new_pair_path
     end
   end
-  
+
 end

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :pair_nil_check
+  
   def edit
     @user = current_user
     @pair = current_user.pair

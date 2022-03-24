@@ -1,13 +1,25 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2>ナカナオリ成立！</h2>
+    </div>
   </div>
 
   <div class = "row">
 
-    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+    <%= render "/pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
+    <div class="col-9 main-content">
+
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+
+          <%= image_tag 'no_image.png', size: "700x500" %>
+
+        </div>
+      </div>
+
     </div>
   </div>
+  <%#= paginate @hoge %>
 </div>

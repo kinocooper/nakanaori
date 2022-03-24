@@ -1,20 +1,31 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2>ペアリング</h2>
+    </div>
   </div>
 
   <div class = "row">
 
-    <div class="col-9">
+    <div class="col-8 col-offset-4 mx-auto">
+
       <%= form_with url:pairing_path, method: :patch, local:true do |f| %>
 
-        <%= f.label :pair_id, "ペアID" %>
-        <%= f.number_field :pair_id %>
+        <div class="form-group my-4 w-50 mx-auto">
+          <%= f.label :pair_id, "ペアID" %>
+          <%= f.number_field :pair_id, class:"form-control" %>
+        </div>
 
-        <%= f.label :keyword, "キーワード" %>
-        <%= f.text_field :keyword %>
-        <%= f.submit "ぺありんぐ", class: 'btn btn-secondary' %>
+        <div class="form-group my-4 w-50 mx-auto">
+          <%= f.label :keyword, "キーワード" %>
+          <%= f.text_field :keyword, class:"form-control" %>
+        </div>
+
+        <div class="actions my-4 w-50 mx-auto">
+          <%= f.submit "ぺありんぐ", class: 'form-control btn-info btn-lg' %>
+        </div>
       <% end %>
+
     </div>
   </div>
 </div>

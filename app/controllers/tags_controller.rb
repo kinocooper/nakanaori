@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :pair_nil_check
 
   def create
     tag = Tag.new(tag_params)

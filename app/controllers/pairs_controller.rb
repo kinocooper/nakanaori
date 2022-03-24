@@ -1,6 +1,5 @@
 class PairsController < ApplicationController
-
-  before_action :pair_nil_check, only:[:top,:edit,:invite,:complete,:confirm]
+  before_action :pair_nil_check, except:[:new,:join,:create]
 
   def top
     @pair = current_user.pair
@@ -10,9 +9,6 @@ class PairsController < ApplicationController
 
     @y_dates = DiscussRecord.this_year_d_count(current_user.pair)
     @tags_ratio = DiscussRecord.each_tags_count(current_user.pair)
-  end
-
-  def introduction
   end
 
   def new

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # pairs
   resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
-  get "pairs/introduction", as: "introduction"
+  # get "pairs/introduction", as: "introduction"  newに集約
   get "pairs/join", as: "join"
   patch "pairs/pairing", as: "pairing"
   get 'pairs/invite', as: "invite"

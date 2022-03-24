@@ -1,13 +1,45 @@
-<h2>ペア新規登録画面</h2>
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-3 page-top p-0">
+      <h2>ペアを作成</h2>
+    </div>
+  </div>
 
-<%= form_with model: @pair, url:pair_path, local:true do |f| %>
+  <div class = "row">
 
-  <%= f.label :name, "ペア名" %>
-  <%= f.text_field :name %>
+    <div class="col-8 col-offset-4 mx-auto">
 
-  <%= f.label :keyword, "キーワード" %>
-  <%= f.text_field :keyword %>
+      <p class="lead text-center">まずはペアを作成しましょう！</p>
+      <!--<div class="d-flex align-content-center">-->
+        <ul>
+          <li>ナカナオリ記録をつけたいお相手との情報をおしえてください</li>
+          <li>ペアリングせずにおひとりでも使用することができます</li>
+          <li>
+            お相手から招待された方は👉<%= link_to "こちら", join_path %>
+          </li>
+        </ul>
+      <!--</div>-->
+      <%#= link_to "ペア新規登録へ", new_pair_path,class:"btn btn-success" %>
 
-  <%= f.submit "ペア作成！" %>
 
-<% end %>
+      <%= form_with model: @pair, url:pair_path, local:true do |f| %>
+
+        <div class="form-group my-4 w-50 mx-auto">
+          <%= f.label :name, "ペア名" %>
+          <%= f.text_field :name, class:"form-control" %>
+        </div>
+
+        <div class="form-group my-4 w-50 mx-auto">
+          <%= f.label :keyword, "ペアリングキーワード" %>
+          <%= f.text_field :keyword, class:"form-control" %>
+        </div>
+
+        <div class="actions my-4 w-50 mx-auto">
+          <%= f.submit "ペア作成！", class:"form-control btn-info btn-lg" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>

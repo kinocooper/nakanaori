@@ -35,21 +35,21 @@ body{
 .main-content{
   h3{
     padding-bottom: 3px;
-    border-bottom: 8px solid #F28482;
+    border-bottom: 4px solid #F28482;
   }
 }
 
 .show-body{
   &__my-opinion{
-    border-bottom: 8px solid #f6bd60;
+    border-bottom: 4px solid #f6bd60;
     max-width: 80%;
   }
   &__p-opinion{
-    border-bottom: 8px solid #84A59D;
+    border-bottom: 4px solid #84A59D;
     max-width: 80%;
   }
   &__title{
-    border-bottom: 8px solid #F28482;
+    border-bottom: 4px solid #F28482;
     max-width: 80%;
   }
 }

@@ -1,19 +1,31 @@
 <div class = "container">
   <div class = "row my-3">
+    <div class="col-3 page-top p-0">
       <h2>招待メールを送る</h2>
+    </div>
   </div>
 
   <div class = "row">
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9">
-      <%= form_with url: send_mail_path, method: :get, local: true do |f| %>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      
-        <%= f.submit "招待メール送信" %>
-      <% end %>
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+
+          <%= form_with url: send_mail_path, method: :get, local: true do |f| %>
+            <div class="form-group w-50 mx-auto">
+              <%= f.label :email, "パートナーのメールアドレス" %>
+              <%= f.text_field :email, class:"form-control" %>
+            </div>
+
+            <div class="actions my-4 w-50 mx-auto">
+              <%= f.submit "招待メール送信", class:"btn btn-info" %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

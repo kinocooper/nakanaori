@@ -1,4 +1,6 @@
 class DiscussRecordsController < ApplicationController
+  before_action :pair_nil_check
+
   def new
     @discuss_record = DiscussRecord.new
     @my_opinion = PersonalOpinion.new
