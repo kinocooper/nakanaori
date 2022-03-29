@@ -12,7 +12,7 @@
     <div class="col-9 main-content">
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
-          
+
           <p class="lead">本当に完全退会しますか？</p>
           <ul>
             <% unless current_user.partner == nil %>
@@ -23,8 +23,9 @@
 
           <%= link_to "完全退会する", pair_path, method: :delete, class:"btn btn-danger" %></p>
 
+          <!--↓個人退会用 後回し-->
+          <!--<p>自分だけが退会する場合は<%#= link_to "こちら", u_confirm_path %></p>-->
 
-          <p>自分だけが退会する場合は<%= link_to "こちら", u_confirm_path %></p>
         </div>
       </div>
     </div>

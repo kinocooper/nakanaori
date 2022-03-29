@@ -1,9 +1,10 @@
 class Pair < ApplicationRecord
   # text型カラムのdefault値設定のため
-  attribute :motto, :text, default: '(未設定)'
+  attribute :motto, :text, default: ''
 
   # バリデーション
   validates :name, presence: true
+  validates :keyword, presence: true
 
   # アソシエーション
   has_many :users, dependent: :destroy

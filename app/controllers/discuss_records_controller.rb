@@ -4,29 +4,39 @@ class DiscussRecordsController < ApplicationController
 
   def new
     @discuss_record = DiscussRecord.new
+    @title = "新規投稿"
     @my_opinion = PersonalOpinion.new
     @pair = current_user.pair
   end
 
   def create
     # レコードの新規生成
-    discuss_record = DiscussRecord.new(discuss_record_params)
-    discuss_record.pair_id = current_user.pair_id
-    discuss_record.save #この時点で投稿の新規idが生成
+    @discuss_record = DiscussRecord.new(discuss_record_params)
+    @discuss_record.pair_id = current_user.pair_id
 
-    # 結びつく自分の意見 新規生成
-    my_opinion = PersonalOpinion.new(personal_opinion_params[:personal_opinion])
-    my_opinion.discuss_record_id = discuss_record.id #ついさっき生成された投稿のid
-    my_opinion.user_id = current_user.id
-    my_opinion.save
+    if @discuss_record.save #この時点で投稿の新規idが生成
+      # 結びつく自分の意見 新規生成
+      @my_opinion = PersonalOpinion.new(personal_opinion_params[:personal_opinion])
+      @my_opinion.discuss_record_id = @discuss_record.id #ついさっきsaveされた投稿のidに結びつける
+      @my_opinion.user_id = current_user.id
+      @my_opinion.save
 
-    # 結びつく相方の意見 新規生成(中身は空)
-    partners_opinion = PersonalOpinion.new
-    partners_opinion.discuss_record_id = discuss_record.id #ついさっき生成された投稿のid
-    partners_opinion.user_id = current_user.partner_id
-    partners_opinion.save
+      # 結びつく相方の意見 新規生成(中身は空) 未ペアリング時は生成しない
+      unless current_user.partner == nil
+        partners_opinion = PersonalOpinion.new
+        partners_opinion.discuss_record_id = @discuss_record.id #ついさっき生成された投稿のid
+        partners_opinion.user_id = current_user.partner_id
+        partners_opinion.save
+      end
+      redirect_to discuss_record_path(@discuss_record.id), notice: "ケンカを投稿しました"
 
-    redirect_to discuss_record_path(discuss_record.id), notice: "ケンカを投稿しました"
+    else # バリーデーションチェックにかかった場合
+      @pair = current_user.pair
+      @title = "新規投稿"
+      @my_opinion = PersonalOpinion.new(personal_opinion_params[:personal_opinion])
+      render :new
+    end
+
   end
 
   def show
@@ -40,16 +50,23 @@ class DiscussRecordsController < ApplicationController
 
   def edit
     @discuss_record = DiscussRecord.find(params[:id])
+    @title = @discuss_record.title
     @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
     @pair = current_user.pair
   end
 
   def update
-    discuss_record = DiscussRecord.find(params[:id])
-    discuss_record.update(discuss_record_params)
-    my_opinion = discuss_record.personal_opinions.find_by(user_id: current_user.id)
-    my_opinion.update(personal_opinion_params[:personal_opinion])
-    redirect_to discuss_record_path(discuss_record),notice:"投稿を更新しました！"
+    @discuss_record = DiscussRecord.find(params[:id])
+    if @discuss_record.update(discuss_record_params)
+      @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
+      @my_opinion.update(personal_opinion_params[:personal_opinion])
+      redirect_to discuss_record_path(@discuss_record),notice:"投稿を更新しました！"
+    else # バリーデーションチェックにかかった場合
+      @pair = current_user.pair
+      @title = DiscussRecord.find(params[:id]).title
+      @my_opinion = PersonalOpinion.new(personal_opinion_params[:personal_opinion])
+      render :edit
+    end
   end
 
   def destroy
