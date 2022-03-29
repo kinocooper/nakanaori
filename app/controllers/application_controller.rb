@@ -25,9 +25,7 @@ class ApplicationController < ActionController::Base
 
 
   def pair_nil_check
-    if current_user.pair_id == nil
-      redirect_to new_pair_path
-    end
+    redirect_to new_pair_path if current_user.pair_id == nil
   end
 
 

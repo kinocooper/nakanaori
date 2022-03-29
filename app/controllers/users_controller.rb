@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
   before_action :pair_nil_check
-  
+
   def edit
     @user = current_user
     @pair = current_user.pair
   end
 
   def update
-    user = current_user
-    user.update(user_params)
-    redirect_to root_path, notice:"ユーザ情報を更新しました！"
+    @user = current_user
+    if @user.update(user_params)
+      redirect_to root_path, notice:"ユーザ情報を更新しました！"
+    else
+      @pair = current_user.pair
+      render :edit
+    end
   end
 
   def confirm

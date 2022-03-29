@@ -1,5 +1,10 @@
 class PairsController < ApplicationController
-  before_action :pair_nil_check, except:[:new,:join,:create]
+  # ペア未作成段階では下記3アクション以外を制限
+  before_action :pair_nil_check, except:[:new,:join,:create,:pairing]
+  # ペア作成済みであれば下記アクションを制限
+  before_action :pair_presence_check, only:[:new,:join]
+  # ペアリング済であれば、加えて下記アクションも制限
+  before_action :already_paired?, only:[:invite]
 
   def top
     @pair = current_user.pair
@@ -104,9 +109,11 @@ class PairsController < ApplicationController
   end
 
   def update
-    pair = current_user.pair
-    pair.update(pair_params)
-    redirect_to root_path, notice:"ペア情報を更新しました！"
+    @pair = current_user.pair
+    if @pair.update(pair_params)
+      redirect_to root_path, notice:"ペア情報を更新しました！"
+    end
+    render :edit
   end
 
   def destroy
@@ -125,6 +132,14 @@ class PairsController < ApplicationController
 
   def pair_params
     params.require(:pair).permit(:name,:motto,:pair_type,:rank,:keyword,:image)
+  end
+
+  def pair_presence_check
+    redirect_to root_path if current_user.pair != nil
+  end
+
+  def already_paired?
+    redirect_to root_path if current_user.pair.is_paired
   end
 
 end

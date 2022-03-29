@@ -70,11 +70,19 @@
 
               <% if @discuss_record.is_closed %>
                 <button type="button" class="btn btn-lg btn-warning" disabled>ナカナオリ済</button>
+
               <% else %>
-                <% if @my_opinion.conclude == "" || @partners_opinion.conclude == "" %>
-                  <button type="button" class="btn btn-lg btn-outline-info" disabled>ナカナオリする！</button>
-                <% else %>
+                <% if current_user.pair.is_paired == false || current_user.partner == nil %>
                   <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+
+                <% else %>
+                  <% if @my_opinion.conclude == "" || @partners_opinion.conclude == "" %>
+                    <button type="button" class="btn btn-lg btn-outline-info" disabled>ナカナオリする！</button>
+
+                  <% else %>
+                    <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+
+                  <% end %>
                 <% end %>
               <% end %>
               <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-secondary" %>
