@@ -1,14 +1,20 @@
 class Pair < ApplicationRecord
   # text型カラムのdefault値設定のため
-  attribute :motto, :text, default: 'もっと～！'
+  attribute :motto, :text, default: '(未設定)'
 
+  # バリデーション
+  validates :name, presence: true
+
+  # アソシエーション
   has_many :users, dependent: :destroy
   has_many :tags, dependent: :destroy
   has_many :discuss_records, dependent: :destroy
   has_one_attached :image
 
+  # enum定義
   enum pair_type: {not_set: 0, married: 1, couple: 2, family: 3, other: 4}
   enum rank: {tamago: 0, hiyoko: 1, kokko: 2, oshidori: 3}
+
 
   def get_pair_image(width, height)
     unless image.attached?

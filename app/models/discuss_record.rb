@@ -2,6 +2,11 @@ class DiscussRecord < ApplicationRecord
   # text型カラムのdefault値設定のため
   attribute :detail, :text, default: ''
 
+  # バリデーション
+  validates :title, presence: true
+  validates :detail, presence: true
+
+  # アソシエーション
   belongs_to :pair
   has_many :personal_opinions, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
@@ -60,7 +65,7 @@ class DiscussRecord < ApplicationRecord
   def judgement_rank
     # このメソッドが呼び出される時点でモデルはpairの情報を持っている…から、『pair』を使える、らしい
     count = pair.discuss_records.where(is_closed: true).count
-    
+
     # case文は比較演算子の場合には適していない模様
     # case count
     # when count >= 15

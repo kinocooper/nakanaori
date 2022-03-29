@@ -1,5 +1,6 @@
 class TagsController < ApplicationController
   before_action :pair_nil_check
+  before_action :this_pairs_tag?, only:[:show,:destroy]
 
   def create
     tag = Tag.new(tag_params)
@@ -24,6 +25,12 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def this_pairs_tag?
+    unless current_user.pair.tags.exists?(id: params[:id])
+    redirect_to root_path
+    end
   end
 
 end

@@ -39,10 +39,10 @@
         <div class="col-10 col-offset-2 mx-auto">
           <h3>これまでのケンカテーマ傾向</h3>
           <div class="row">
-            <div class="col-6">
+            <div class="col-8">
               <%= pie_chart @tags_ratio, donut: true %>
             </div>
-            <div class="col-6">
+            <div class="col-4">
               <table class="table table-hover">
                 <% @all_tags.each do |tag| %>
                   <tr>

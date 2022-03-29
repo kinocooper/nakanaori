@@ -1,5 +1,6 @@
 class DiscussRecordsController < ApplicationController
   before_action :pair_nil_check
+  before_action :this_pairs_record?, only:[:show,:edit,:update,:destroy,:reconcile]
 
   def new
     @discuss_record = DiscussRecord.new
@@ -82,5 +83,13 @@ class DiscussRecordsController < ApplicationController
   def personal_opinion_params
     params.require(:discuss_record).permit(personal_opinion:[:claim,:conclude])
   end
+
+  def this_pairs_record? # 対象idの記事が現在のペアに結びつくものか
+    # この記事　が　このペアの持っている記事　に　含まれているか
+    unless current_user.pair.discuss_records.exists?(id: params[:id])
+    redirect_to root_path
+    end
+  end
+
 
 end

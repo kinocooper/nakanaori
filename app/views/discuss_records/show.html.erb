@@ -68,10 +68,14 @@
               <% end %>
               </div>
 
-              <% unless @discuss_record.is_closed %>
-                <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+              <% if @discuss_record.is_closed %>
+                <button type="button" class="btn btn-lg btn-warning" disabled>ナカナオリ済</button>
               <% else %>
-                <p>ナカナオリ済</p>
+                <% if @my_opinion.conclude == "" || @partners_opinion.conclude == "" %>
+                  <button type="button" class="btn btn-lg btn-outline-info" disabled>ナカナオリする！</button>
+                <% else %>
+                  <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+                <% end %>
               <% end %>
               <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-secondary" %>
               <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-outline-danger" %>
