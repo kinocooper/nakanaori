@@ -2,6 +2,11 @@ class DiscussRecord < ApplicationRecord
   # text型カラムのdefault値設定のため
   attribute :detail, :text, default: ''
 
+  # バリデーション
+  validates :title, presence: true
+  validates :detail, presence: true
+
+  # アソシエーション
   belongs_to :pair
   has_many :personal_opinions, dependent: :destroy
   has_many :tag_relationships, dependent: :destroy
@@ -15,9 +20,9 @@ class DiscussRecord < ApplicationRecord
   def self.seven_days_d_count(current_pair)
     # 何日の何時～何日の何時までか　『グラフ対象全体』の時間
     start_date = Date.current - 6 # 現在時刻から24時間×6日前
-    p start_date # デバッグ用
+    # p start_date # デバッグ用
     end_date = Date.current #現在時刻
-    p end_date # デバッグ用
+    # p end_date # デバッグ用
     dates = {} #データを格納するハッシュを用意
     # 7日間を1日ずつeach
     # この"date"は『もし時間に変換すると』あくまで0時0分0秒の一時点を示している
@@ -58,8 +63,9 @@ class DiscussRecord < ApplicationRecord
   end
 
   def judgement_rank
+    # このメソッドが呼び出される時点でモデルはpairの情報を持っている…から、『pair』を使える、らしい
     count = pair.discuss_records.where(is_closed: true).count
-    
+
     # case文は比較演算子の場合には適していない模様
     # case count
     # when count >= 15

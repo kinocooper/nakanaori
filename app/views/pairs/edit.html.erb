@@ -1,21 +1,55 @@
-<h2>ペア情報編集画面</h2>
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-3 page-top p-0">
+      <h2>ペア情報編集</h2>
+    </div>
+  </div>
 
-<%= form_with model: @pair, local: true do |f| %>
+  <div class = "row">
 
-  <%= f.label :name, "ペア名" %>
-  <%= f.text_field :name %>
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-  <%= f.label :image, "ペア画像" %>
-  <%= f.file_field :image, accept: "image/*" %>
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
 
-  <%= f.label :motto, "ペアのモットー！" %>
-  <%= f.text_field :motto %>
+          <%= form_with model: @pair, local: true do |f| %>
+            <div class="form-group">
+              <%= f.label :name, "ペア名" %>
+              <%= f.text_field :name, class:"form-control" %>
+            </div>
 
-  <%= f.label :keyword, "キーワード" %>
-  <%= f.text_field :keyword %>
+            <div class="form-group">
+              <%= f.label :image, "ペア画像" %>
+              <%= f.file_field :image, accept: "image/*", class:"form-control" %>
+            </div>
 
-  <%= f.submit "ペア情報更新！" %>
+            <div class="form-group">
+              <%= f.label :motto, "ペアのモットー！" %>
+              <%= f.text_field :motto, class:"form-control" %>
+            </div>
 
-<% end %>
+            <div class="form-group">
+              <%= f.label :pair_type, "関係性" %>
+              <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]],{} , class:"form-control" %>
+            </div>
 
-<%= link_to "完全退会する？", p_confirm_path, class:"btn btn-danger" %>
+            <div class="form-group">
+              <%= f.label :keyword, "ペアリングキーワード" %>
+              <%= f.text_field :keyword, class:"form-control" %>
+            </div>
+
+            <div class="actions my-4">
+              <%= f.submit "ペア情報更新！", class:"btn btn-info btn-lg" %>
+            </div>
+          <% end %>
+
+          <div class="text-right">
+            <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-outline-danger align-items-bottom  btn-sm" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

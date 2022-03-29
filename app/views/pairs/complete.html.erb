@@ -1,2 +1,25 @@
-<h1>Pairs#complete</h1>
-<p>Find me in app/views/pairs/complete.html.erb</p>
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-3 page-top p-0">
+      <h2>メール送信完了！</h2>
+    </div>
+  </div>
+
+  <div class = "row">
+
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9 main-content">
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+
+        <p class="lead">メールを送信しました。</p>
+        <p>パートナーにペアリング用のキーワードを教えてあげてください。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

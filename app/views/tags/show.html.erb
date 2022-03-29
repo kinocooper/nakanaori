@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row my-3">
     <div class="col-3 page-top p-0">
-      <h2>ナカナオリ成立！</h2>
+      <h2>『<%= @tag.name %>』の<br>　　　ケンカ一覧</h2>
     </div>
   </div>
 
@@ -13,9 +13,7 @@
 
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
-
-          <%= image_tag 'no_image.jpg', size: "700x500" %>
-
+          <%= render "discuss_records/index", records: @discuss_records %>
         </div>
       </div>
 

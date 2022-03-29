@@ -1,3 +1,27 @@
-<h2>ケンカ投稿一覧</h2>
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-3 page-top p-0">
+      <h2>ケンカ投稿一覧</h2>
+    </div>
+  </div>
 
-<%= render "discuss_records/index", records: @discuss_records %>
+  <div class = "row">
+
+    <%= render "/pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+    <div class="col-9 main-content">
+
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+          <%= render "discuss_records/index", records: @discuss_records %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <%#= paginate @hoge %>
+</div>
+
+
+
+

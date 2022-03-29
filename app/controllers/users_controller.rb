@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
+  before_action :pair_nil_check
+  
   def edit
     @user = current_user
+    @pair = current_user.pair
   end
 
   def update
@@ -10,12 +13,13 @@ class UsersController < ApplicationController
   end
 
   def confirm
+    @pair = current_user.pair
   end
 
   def disabling
     user = User.find(current_user.id)
     user.update(is_active: FALSE)
-    
+
     user.pair.update(is_pair)
   end
 

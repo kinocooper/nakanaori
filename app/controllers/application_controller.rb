@@ -1,9 +1,7 @@
 class ApplicationController < ActionController::Base
-
-  # deviseのコントローラ群使用時、
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # 未ログイン時はアバウト以外アクセス不可
+  # 未ログイン時はログインとサインアップ以外はアバウト以外アクセス不可
   before_action :authenticate_user!, except:[:about]
 
   # ログインしたらトップに飛ぶ
@@ -20,15 +18,18 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # deviseのコントローラ群使用時用のストロングパラメータ的なもの
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :partner_id, :pair_id])
   end
-  
-  
+
+
   def pair_nil_check
     if current_user.pair_id == nil
-      redirect_to introduction_path
+      redirect_to new_pair_path
     end
   end
-  
+
+
+
 end

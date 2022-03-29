@@ -1,27 +1,18 @@
-<h2>ケンカ編集！</h2>
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-3 page-top p-0">
+      <h2>ケンカ編集！</h2>
+    </div>
+  </div>
 
-<%= form_with model: @tag do |f| %>
-  <%= f.label :name, "新しいタグ名" %>
-  <%= f.text_field :name %>
-  <%= f.submit "タグを作成" %>
-<% end %>
+  <div class = "row">
 
-<br>
-<br>
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-[タグ一覧]
-<% @tags.each do |tag| %>
-  <%# if TagRelationship.exists?() %>
-  <% if @discuss_record.tag_relationships.exists?(tag_id: tag.id) %>
-    <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"btn btn-primary" %>
-  <% else %>
-    <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"btn border border" %>
-  <% end %>
+    <div class="col-9 main-content">
+      <%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion %>
+    </div>
+  </div>
+</div>
 
-  <%= link_to "[×]", tag_path(tag.id), method: :delete %>
-<% end %>
 
-<br>
-<br>
-
-<%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion %>

@@ -12,6 +12,7 @@
         pair_type:
           not_set: ""
           married: "夫婦"
+          family: "親子"
           couple: "カップル"
           other: ""
 

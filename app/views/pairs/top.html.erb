@@ -1,7 +1,7 @@
 <div class = "container">
   <div class = "row my-3">
-    <div class = "col-4">
-      <h2>とっぷぺーじ</h2>
+    <div class="col-3 page-top p-0">
+      <h2>トップページ</h2>
     </div>
   </div>
 
@@ -9,40 +9,58 @@
 
     <%= render "sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9 bg-info">
-      <% unless @discussing_records.empty?   %>
-        <h3>[ケンカ中！！5件]</h3>
-        <%= render "discuss_records/index", records: @discussing_records %>
-      <% end %>
+    <div class="col-9 main-content">
 
-      <h3>[最新ナカナオリ5件]</h3>
-      <%= render "discuss_records/index", records: @closed_records %>
+      <div class="row mb-3">
+        <div class="col-10 col-offset-2 mx-auto">
+          <% unless @discussing_records.empty? %>
+            <h3>ケンカ中！！</h3>
+            <%= render "discuss_records/index", records: @discussing_records %>
+          <% end %>
+        </div>
+      </div>
 
-      <%#= column_chart @w_dates %>
-      <h3>[今年のナカナオリチャート]</h3>
-      <%= column_chart @y_dates %>
-      <%#= pie_chart Yogurt.group(:flavor).count %>
+      <div class="row mb-3">
+        <div class="col-10 col-offset-2 mx-auto">
+          <h3>最近のナカナオリ</h3>
+          <%= render "discuss_records/index", records: @closed_records %>
+        </div>
+      </div>
 
-      <h3>[これまでのケンカテーマ傾向]</h3>
-      <%= pie_chart @tags_ratio %>
+
+      <div class="row mb-5">
+        <div class="col-10 col-offset-2 mx-auto">
+          <h3>今年のナカナオリチャート</h3>
+          <%= column_chart @y_dates, colors: ["#84A59D"] %>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-10 col-offset-2 mx-auto">
+          <h3>これまでのケンカテーマ傾向</h3>
+          <div class="row">
+            <div class="col-8">
+              <%= pie_chart @tags_ratio, donut: true %>
+            </div>
+            <div class="col-4">
+              <table class="table table-hover">
+                <% @all_tags.each do |tag| %>
+                  <tr>
+                    <td class="w-50">
+                      <span class="tag"><%= tag.name %></span>
+                    </td>
+                    <td class="w-50">
+                      <%= link_to ":#{tag.discuss_records.count}件", tag_path(tag) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
   <%#= paginate @items_page %>
 </div>
-
----------デバッグ用----------<br>
-ログイン中ユーザ
-<dl>
-<!--.attributes⇒対象インスタンスの属性(カラム)を排出-->
-<% current_user.attributes.each do |attr_name, value| %>
-<dt><%= attr_name %></dt>
-<dd><%= value %></dd>
-<% end %>
-</dl>
----------デバッグ用----------
-
-<%#= link_to "ペア新規登録へ", new_pairs_path,class:"btn btn-success" %>
-<%#= link_to "招待される", join_path,class:"btn btn-success" %>
-
-
-

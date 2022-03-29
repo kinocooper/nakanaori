@@ -1,7 +1,11 @@
 class DiscussRecordsController < ApplicationController
+  before_action :pair_nil_check
+  before_action :this_pairs_record?, only:[:show,:edit,:update,:destroy,:reconcile]
+
   def new
     @discuss_record = DiscussRecord.new
     @my_opinion = PersonalOpinion.new
+    @pair = current_user.pair
   end
 
   def create
@@ -26,16 +30,18 @@ class DiscussRecordsController < ApplicationController
   end
 
   def show
-    @discuss_record = DiscussRecord.find(params[:id])
-    @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
-    @partners_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.partner_id)
-  end
-
-  def edit
     @tag = Tag.new
     @tags = current_user.pair.tags
     @discuss_record = DiscussRecord.find(params[:id])
     @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
+    @partners_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.partner_id)
+    @pair = current_user.pair
+  end
+
+  def edit
+    @discuss_record = DiscussRecord.find(params[:id])
+    @my_opinion = @discuss_record.personal_opinions.find_by(user_id: current_user.id)
+    @pair = current_user.pair
   end
 
   def update
@@ -54,15 +60,17 @@ class DiscussRecordsController < ApplicationController
 
   def reconcile
     discuss_record = DiscussRecord.find(params[:id])
-    discuss_record.update(is_closed: TRUE)
+    discuss_record.update(is_closed: true)
     redirect_to congratulations_path, notice: "ナカナオリおめでとう＾＾"
   end
 
   def congratulations
+    @pair = current_user.pair
   end
 
   def index
     @discuss_records = current_user.pair.discuss_records.order("created_at DESC")
+    @pair = current_user.pair
   end
 
 
@@ -75,5 +83,13 @@ class DiscussRecordsController < ApplicationController
   def personal_opinion_params
     params.require(:discuss_record).permit(personal_opinion:[:claim,:conclude])
   end
+
+  def this_pairs_record? # 対象idの記事が現在のペアに結びつくものか
+    # この記事　が　このペアの持っている記事　に　含まれているか
+    unless current_user.pair.discuss_records.exists?(id: params[:id])
+    redirect_to root_path
+    end
+  end
+
 
 end

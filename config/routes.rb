@@ -21,11 +21,11 @@ Rails.application.routes.draw do
   # pairs
   resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
-  get "pairs/introduction", as: "introduction"
+  # get "pairs/introduction", as: "introduction"  newに集約
   get "pairs/join", as: "join"
   patch "pairs/pairing", as: "pairing"
   get 'pairs/invite', as: "invite"
-  post "pairs/send", as: "send"
+  get "pairs/send_mail", as: "send_mail"
   get 'pairs/complete', as: "complete"
   get 'pairs/confirm', as: "p_confirm"
 
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   patch "discuss_records/:id/reconcile" => "discuss_records#reconcile", as: "reconcile"
 
   # tags
-  resources :tags, only:[:create,:destroy]
+  resources :tags, only:[:show,:create,:destroy]
 
   # tag_relationships
   post "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#create", as: "tag_relationships"
