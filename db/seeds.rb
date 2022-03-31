@@ -22,8 +22,8 @@ User.create!(
 
 Pair.create!(
   [
-    {name: 'pair1', motto: 'なかよくしよう', pair_type: 0, rank: 0, is_paired: true},
-    {name: 'pair2', motto: '一日一笑', pair_type: 0, rank: 0, is_paired: true},
-    {name: 'pair3', motto: 'いい夫婦', pair_type: 0, rank: 0, is_paired: false}
+    {name: 'pair1', motto: 'なかよくしよう', pair_type: 0, rank: 0, is_paired: true, keyword: "きのこ"},
+    {name: 'pair2', motto: '一日一笑', pair_type: 0, rank: 0, is_paired: true, keyword: "きのこ"},
+    {name: 'pair3', motto: 'いい夫婦', pair_type: 0, rank: 0, is_paired: false, keyword: "きのこ"}
   ]
 )

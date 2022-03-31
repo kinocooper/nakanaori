@@ -32,7 +32,7 @@
                 <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
               <% end %>
 
-              <%= link_to "[×]", tag_path(tag.id), method: :delete %>
+              <%= link_to "[×]", tag_path(tag.id), method: :delete, data: {confirm: "[#{tag.name}]タグを削除してよろしいですか？"} %>
             <% end %>
           </div>
 <!--タグ関係-->
@@ -86,7 +86,7 @@
                 <% end %>
               <% end %>
               <%= link_to "編集する", edit_discuss_record_path, class:"btn btn-secondary" %>
-              <%= link_to "削除する", discuss_record_path, method: :delete, class:"btn btn-outline-danger" %>
+              <%= link_to "削除する", discuss_record_path, method: :delete, data: {confirm: "投稿を削除してよろしいですか？"}, class:"btn btn-outline-danger" %>
             </div>
           </div>
         </div>

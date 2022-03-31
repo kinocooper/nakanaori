@@ -75,7 +75,14 @@ class PairsController < ApplicationController
           # 4 ペアの_is_pairedステータスを更新
           pair.update(is_paired: true)
 
+          # 5 これまでの全投稿にの空個人意見を生成
+          discuss_records = pair.discuss_records
+          discuss_records.each do |discuss_record|
+            PersonalOpinion.create(user_id: person.id, discuss_record_id: discuss_record.id)
+          end
+
           redirect_to root_path, notice: 'ペアリングしました！'
+
         else
           redirect_to join_path, notice: 'キーワードが間違っています'
         end
@@ -112,8 +119,9 @@ class PairsController < ApplicationController
     @pair = current_user.pair
     if @pair.update(pair_params)
       redirect_to root_path, notice:"ペア情報を更新しました！"
+    else
+      render :edit
     end
-    render :edit
   end
 
   def destroy
