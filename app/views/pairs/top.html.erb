@@ -14,7 +14,7 @@
       <div class="row mb-3">
         <div class="col-10 col-offset-2 mx-auto">
           <% unless @discussing_records.empty? %>
-            <h3>ケンカ中！！</h3>
+            <h3 class="subtitle">ケンカ中！！</h3>
             <%= render "discuss_records/index", records: @discussing_records %>
           <% end %>
         </div>
@@ -22,7 +22,7 @@
 
       <div class="row mb-3">
         <div class="col-10 col-offset-2 mx-auto">
-          <h3>最近のナカナオリ</h3>
+          <h3 class="subtitle">最近のナカナオリ</h3>
           <%= render "discuss_records/index", records: @closed_records %>
         </div>
       </div>
@@ -30,14 +30,14 @@
 
       <div class="row mb-5">
         <div class="col-10 col-offset-2 mx-auto">
-          <h3>今年のナカナオリチャート</h3>
+          <h3 class="subtitle">今年のナカナオリチャート</h3>
           <%= column_chart @y_dates, colors: ["#84A59D"] %>
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-10 col-offset-2 mx-auto">
-          <h3>これまでのケンカテーマ傾向</h3>
+          <h3 class="subtitle">これまでのケンカテーマ傾向</h3>
           <div class="row">
             <div class="col-8">
               <%= pie_chart @tags_ratio, donut: true %>
