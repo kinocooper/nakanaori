@@ -20,6 +20,21 @@ class PairsController < ApplicationController
     @pair = Pair.new
   end
 
+  def create
+    # ペアの新規生成
+    @pair = Pair.new(pair_params)
+    if @pair.save
+
+      # 作成したてのペアidをcurrent_userに結びつける
+      user = User.find(current_user.id)
+      user.update(pair_id: @pair.id)
+
+      redirect_to root_path
+    else
+      render :new
+    end
+  end
+
   # 招待前 メールアドレス入力画面
   def invite
     @pair = current_user.pair
@@ -97,18 +112,6 @@ class PairsController < ApplicationController
     end
 
 
-  end
-
-  def create
-    # ペアの新規生成
-    pair = Pair.new(pair_params)
-    pair.save
-
-    # 作成したてのペアidをcurrent_userに結びつける
-    user = User.find(current_user.id)
-    user.update(pair_id: pair.id)
-
-    redirect_to root_path
   end
 
   def edit
