@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-md px-3">
-  <!--レスポンシブデザイン変更タイミング(lg) -->
+  <nav class="navbar navbar-expand-md navbar px-3 shadow">
+  <!--レスポンシブデザイン変更タイミング(md) -->
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <li class="navbar-nav">
@@ -10,7 +10,7 @@
         </li>
 
         <% if user_signed_in? %>
-          <p class="user-name text-light">
+          <p class="user-name">
             ようこそ、<%= current_user.name %>さん！
           </p>
 
