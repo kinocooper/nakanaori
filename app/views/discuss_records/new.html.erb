@@ -1,17 +1,17 @@
 <div class = "container">
   <div class = "row my-3">
-    <div class="col-3 page-top p-0">
+    <div class="col-lg-3 page-top p-0">
       <h2>新規ケンカ投稿！</h2>
     </div>
   </div>
 
   <div class = "row">
+    <div class="col-lg-9 order-lg-2 main-content">
+      <%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion, title: @title %>
+    </div>
 
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
-    <div class="col-9 main-content">
-      <%= render "form", discuss_record: @discuss_record, my_opinion: @my_opinion, title: @title %>
-    </div>
   </div>
 </div>
 

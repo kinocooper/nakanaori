@@ -1,15 +1,12 @@
 <div class = "container">
   <div class = "row my-3">
-    <div class="col-3 page-top p-0">
+    <div class="col-lg-3 page-top p-0">
       <h2>ユーザー情報編集</h2>
     </div>
   </div>
 
   <div class = "row">
-
-    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
-
-    <div class="col-9 main-content">
+    <div class="col-lg-9 order-lg-2 main-content">
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
 
@@ -40,9 +37,12 @@
           <!--  <%#= link_to "退会する？", u_confirm_path, class:"btn btn-outline-danger btn-sm" %><br>-->
           <!--  片割れだけの退会は複雑なので、一旦後回しにする👆-->
           <!--</div>-->
-          
+
         </div>
       </div>
     </div>
+
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
   </div>
 </div>
