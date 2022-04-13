@@ -1,47 +1,53 @@
 <header>
-  <nav class="navbar navbar-expand-md navbar px-3 shadow">
-  <!--レスポンシブデザイン変更タイミング(md) -->
+  <nav class="navbar navbar-expand-md navbar-light px-3 shadow-sm">
+  <!--ブレークポイントmd -->
     <div class="container">
+      <%= link_to root_path, class:"navbar-brand mx-3 py-0" do %>
+        <%= image_tag 'logo_transparent_cut.png', size: "125x90" %>
+      <% end %>
+      <% if user_signed_in? %>
+        <p class="user-name">
+          ようこそ、<%= current_user.name %>さん！
+        </p>
+      <% end %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <li class="navbar-nav">
-          <%= link_to root_path, class:"text-light nav-link mx-3 py-0" do %>
-            <%= image_tag 'logo_transparent_cut.png', size: "125x90" %>
-          <% end %>
-        </li>
+        <!--これ以下 md未満で格納-->
 
         <% if user_signed_in? %>
-          <p class="user-name">
-            ようこそ、<%= current_user.name %>さん！
-          </p>
 
-          <ul class="navbar-nav ml-auto">
+          <ul class="nav navbar-nav nav-tabs ml-auto">
             <li>
-              <%= link_to "About", about_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              <%= link_to "About", about_path, class: 'nav-link text-dark mx-1' %>
             </li>
             <li>
-              <%= link_to "投稿する", new_discuss_record_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              <%= link_to "投稿する", new_discuss_record_path, class: 'nav-link text-dark mx-1' %>
             </li>
             <li>
-              <%= link_to "投稿一覧", discuss_records_path, class: 'nav-link text-light border border-light rounded mx-1' %>
+              <%= link_to "投稿一覧", discuss_records_path, class: 'nav-link text-dark mx-1' %>
             </li>
             <li>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light border border-light rounded mx-1' %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark mx-1' %>
             </li>
           </ul>
 
-          <% else %>
-            <ul class="navbar-nav ml-auto">
-              <li>
-                <%= link_to "About", about_path, class: 'nav-link text-light border border-light rounded mx-1' %>
-              </li>
-              <li>
-                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light border border-light rounded mx-1' %>
-              </li>
-              <li>
-                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light border border-light rounded mx-1' %>
-              </li>
-            </ul>
-          <% end %>
+        <% else %>
+          <ul class="nav nav-tabs navbar-nav ml-auto">
+            <li>
+              <%= link_to "About", about_path, class: 'nav-link text-dark mx-1' %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark mx-1' %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark mx-1' %>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
   </nav>
