@@ -1,15 +1,12 @@
 <div class = "container">
   <div class = "row my-3">
-    <div class="col-3 page-top p-0">
+    <div class="col-lg-3 page-top p-0">
       <h2>『<%= @tag.name %>』の<br>　　　ケンカ一覧</h2>
     </div>
   </div>
 
   <div class = "row">
-
-    <%= render "/pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
-
-    <div class="col-9 main-content">
+    <div class="col-lg-9 order-lg-2 main-content">
 
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
@@ -18,6 +15,9 @@
       </div>
 
     </div>
+
+    <%= render "/pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
   </div>
   <%#= paginate @hoge %>
 </div>
