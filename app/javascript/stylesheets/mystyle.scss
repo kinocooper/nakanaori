@@ -1,5 +1,6 @@
 body{
   background-color:#f7ede2;
+  font-family: Chalkduster, "Segoe UI", "メイリオ", "sans-serif";
 }
 
 .navbar{
@@ -7,7 +8,6 @@ body{
 }
 
 .sidebar{
-  // background-color:#F5CAC3;
   border: solid;
   border-radius: 8px;
 }
@@ -37,10 +37,25 @@ body{
     padding-bottom: 3px;
     border-bottom: 4px solid #F28482;
   }
+
   img {
     max-width: 100%;
     height: auto;
     width /***/:auto;
+  }
+
+  .element {
+    /* aboutの各ブロック */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: opacity 1s, visibility 1s, transform 1s;
+  }
+  /* フェードイン時に入るクラス */
+  .is-fadein {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
   }
 }
 
@@ -102,3 +117,4 @@ body{
   max-width: 400px;
   margin: auto;
 }
+
