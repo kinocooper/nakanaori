@@ -10,7 +10,7 @@ class PairsController < ApplicationController
     @pair = current_user.pair
     @discussing_records = current_user.pair.discuss_records.where(is_closed: false).order("created_at DESC").limit(5)
     @closed_records = DiscussRecord.where(pair_id: current_user.pair.id).where(is_closed: true).order("created_at DESC").limit(5)
-    @all_tags = current_user.pair.tags
+    @all_tags = @pair.tags
 
     @y_dates = DiscussRecord.this_year_d_count(current_user.pair)
     @tags_ratio = DiscussRecord.each_tags_count(current_user.pair)
