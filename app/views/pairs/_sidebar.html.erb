@@ -5,19 +5,29 @@
       <%= image_tag pair.get_pair_image(400,400),class:"mx-auto d-block rounded-circle border w-100" %><br>
       <table class="table">
         <tr>
-          <th colspan="2" class="text-center">ふたりの標語</th>
+          <th class="text-center p-0">ふたりの標語</th>
         </tr>
         <tr>
-          <td colspan="2" class="text-center"><%= pair.motto %></td>
+          <td class="text-center"><%= pair.motto %></td>
         </tr>
         <tr>
-          <th class="w-50 p-1 align-middle">おしどり<br>ランク</th>
-          <td class="w-50 p-1 align-middle"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
+          <th class="text-center p-0">おしどりランク</th>
+        </tr>
+        <tr>
+          <td class="text-center"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
         </tr>
         <% if current_user.pair.is_paired %>
           <tr>
-            <th class="w-50 p-1 align-middle"><%= current_user.partner.name %>さんの<br>おこゲージ</th>
-            <td class="w-50 p-1 align-middle"><%= current_user.partner.oko_gauge_i18n %></td>
+            <th class="text-center p-0">自分のおこゲージ</th>
+          </tr>
+          <tr>
+            <td class="text-center"><%= current_user.oko_gauge_i18n %></td>
+          </tr>
+          <tr>
+            <th class="text-center p-0"><%= current_user.partner.name %>さんのおこゲージ</th>
+          </tr>
+          <tr>
+            <td class="text-center"><%= current_user.partner.oko_gauge_i18n %></td>
           </tr>
         <% end %>
       </table>
