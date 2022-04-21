@@ -21,6 +21,11 @@ class TagsController < ApplicationController
     @discuss_records = @tag.discuss_records
   end
 
+  def index
+    @pair = current_user.pair
+    @tags = @pair.tags
+  end
+
   private
 
   def tag_params

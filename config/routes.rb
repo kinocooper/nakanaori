@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   patch "discuss_records/:id/reconcile" => "discuss_records#reconcile", as: "reconcile"
 
   # tags
-  resources :tags, only:[:show,:create,:destroy]
+  resources :tags, only:[:index,:show,:create,:destroy]
 
   # tag_relationships
   post "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#create", as: "tag_relationships"

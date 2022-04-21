@@ -1,0 +1,55 @@
+<div class = "container">
+  <div class = "row my-3">
+    <div class="col-lg-3 page-top p-0">
+      <h2>タグ管理</h2>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class="col-lg-9 order-lg-2 main-content">
+
+      <div class="row">
+        <div class="col-10 col-offset-2 mx-auto">
+
+<!--タグ関係-->
+          <div class="tag-edit mb-4">
+            <%= form_with model: @tag do |f| %>
+              <div class="d-flex">
+                <%= f.text_field :name, class:"form-control w-25 mx-2" %>
+                <%= f.submit "新しいタグを作成", class:"btn btn-info" %>
+              </div>
+            <% end %>
+
+            <br>
+
+            <table class="table table-hover">
+              <tr>
+                <th>タグ名</th>
+                <th></th>
+                <th>投稿数</th>
+              </tr>
+              <% @tags.each do |tag| %>
+                <tr>
+                  <td>
+                    <span class="tag"><%= tag.name %></span>
+                  </td>
+                  <td>
+                    <%= link_to "タグを削除", tag_path(tag.id), method: :delete, data: {confirm: "[#{tag.name}]タグを削除してよろしいですか？"}, class:"btn btn-sm btn-outline-danger" %>
+                  </td>
+                  <td>
+                    <%= link_to ":#{tag.discuss_records.count}件", tag_path(tag) %>
+                  </td>
+                </tr>
+              <% end %>
+            </table>
+          </div>
+<!--タグ関係-->
+
+        </div>
+      </div>
+    </div>
+
+    <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
+
+  </div>
+</div>
