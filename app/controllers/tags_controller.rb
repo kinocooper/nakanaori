@@ -24,6 +24,7 @@ class TagsController < ApplicationController
   def index
     @pair = current_user.pair
     @tags = @pair.tags
+    @tag = Tag.new
   end
 
   private
