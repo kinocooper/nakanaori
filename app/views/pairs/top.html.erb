@@ -12,7 +12,7 @@
       <div class="row mb-3">
         <div class="col-lg-10 mx-auto">
           <% unless @discussing_records.empty? %>
-            <h3 class="subtitle">ケンカ中！！</h3>
+            <h3 class="subtitle">ケンカ中<%= image_tag 'muka.png' %></h3>
             <%= render "discuss_records/index", records: @discussing_records %>
           <% end %>
         </div>
