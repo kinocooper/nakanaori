@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col-10 col-offset-2 mx-auto">
 
-          <%= form_with url: send_mail_path, method: :get, local: true do |f| %>
+          <%= form_with url: send_mail_pair_path, method: :get, local: true do |f| %>
             <div class="form-group w-50 mx-auto">
               <%= f.label :email, "パートナーのメールアドレス" %>
               <%= f.text_field :email, class:"form-control" %>

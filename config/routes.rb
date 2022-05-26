@@ -19,15 +19,17 @@ Rails.application.routes.draw do
   end
 
   # pairs
-  resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
-  # get "pairs/introduction", as: "introduction"  newに集約
-  get "pairs/join", as: "join"
-  patch "pairs/pairing", as: "pairing"
-  get 'pairs/invite', as: "invite"
-  get "pairs/send_mail", as: "send_mail"
-  get 'pairs/complete', as: "complete"
-  get 'pairs/confirm', as: "p_confirm"
+  resource :pair, only:[:new,:create,:edit,:update,:destroy] do
+    collection do
+      get "confirm"
+      get "join"
+      get "invite"
+      get "send_mail"
+      get "complete"
+      patch "pairing"
+    end
+  end
 
   # discuss_records
   get 'discuss_records/congratulations', as: "congratulations"

@@ -35,7 +35,7 @@
       <%= link_to "ユーザー編集", edit_user_path, class:"btn btn-block btn-warning my-2" %>
       <%= link_to "ペア編集", edit_pair_path, class:"btn btn-block btn-warning" %>
       <% unless current_user.pair.is_paired %>
-        <%= link_to "ペア招待", invite_path, class:"btn btn-block btn-outline-info my-2" %>
+        <%= link_to "ペア招待", invite_pair_path, class:"btn btn-block btn-outline-info my-2" %>
       <% end %>
     </div>
   </div>
