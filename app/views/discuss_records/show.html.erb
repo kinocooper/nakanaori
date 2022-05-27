@@ -25,9 +25,9 @@
             [クリックでタグ付け]
             <% @tags.each do |tag| %>
               <% if @discuss_record.tag_relationships.exists?(tag_id: tag.id) %>
-                <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"tag" %>
+                <%= link_to "#{tag.name}", destroy_tag_relationships_path(@discuss_record.id, tag.id), method: :delete, class:"tag" %>
               <% else %>
-                <%= link_to "#{tag.name}", tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
+                <%= link_to "#{tag.name}", new_tag_relationships_path(@discuss_record.id, tag.id), method: :post, class:"tag__not-atacched" %>
               <% end %>
             <% end %>
           </div>
@@ -76,7 +76,7 @@
                     <button type="button" class="btn btn-lg btn-outline-info" disabled>ナカナオリする！</button>
 
                   <% else %>
-                    <%= link_to "ナカナオリする！", reconcile_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
+                    <%= link_to "ナカナオリする！", reconcile_discuss_record_path(params[:id]), method: :patch, class:"btn btn-info btn-lg" %>
 
                   <% end %>
                 <% end %>
