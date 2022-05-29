@@ -10,11 +10,11 @@
 
       pair:
         pair_type:
-          not_set: ""
+          not_set: "未設定"
           married: "夫婦"
           family: "親子"
           couple: "カップル"
-          other: ""
+          other: "その他"
 
         rank:
           tamago: "たまご"
