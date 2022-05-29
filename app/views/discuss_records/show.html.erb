@@ -42,15 +42,18 @@
               <div class="detail mb-5">
                 <h4 class="show-body__title">ケンカの内容</h4>
                 <p><%= @discuss_record.detail %></p>
+                <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
               </div>
 
               <div class="claim mb-5">
                 <h4 class="show-body__my-opinion">自分の主張</h4>
                 <p><%= @my_opinion.claim %></p>
+                <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
 
               <% unless current_user.partner == nil %>
                 <h4 class="show-body__p-opinion"><%= current_user.partner.name %>さんの主張</h4>
                 <p><%= @partners_opinion.claim %></p>
+                <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
               <% end %>
               </div>
 
