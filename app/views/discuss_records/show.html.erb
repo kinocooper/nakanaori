@@ -41,29 +41,35 @@
             <div class="show-body p-4">
               <div class="detail mb-5">
                 <h4 class="show-body__title">ケンカの内容</h4>
-                <p><%= @discuss_record.detail %></p>
+                <p class="mb-0"><%= @discuss_record.detail %></p>
                 <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
               </div>
 
-              <div class="claim mb-5">
+              <div class="claim mb-2">
                 <h4 class="show-body__my-opinion">自分の主張</h4>
-                <p><%= @my_opinion.claim %></p>
-                <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
+                <p class="mb-0"><%= @my_opinion.claim %></p>
+                <span class="small text-dark timestamp"><%= @my_opinion.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
+              </div>
 
               <% unless current_user.partner == nil %>
+              <div class="claim mb-5">
                 <h4 class="show-body__p-opinion"><%= current_user.partner.name %>さんの主張</h4>
-                <p><%= @partners_opinion.claim %></p>
-                <span class="small text-dark timestamp"><%= @discuss_record.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
+                <p class="mb-0"><%= @partners_opinion.claim %></p>
+                <span class="small text-dark timestamp"><%= @partners_opinion.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
               <% end %>
               </div>
 
-              <div class="conclude mb-5">
+              <div class="conclude mb-2">
                 <h4 class="show-body__my-opinion">自分の反省</h4>
-                <p><%= @my_opinion.conclude %></p>
+                <p class="mb-0"><%= @my_opinion.conclude %></p>
+                <span class="small text-dark timestamp"><%= @my_opinion.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
+              </div>
 
               <% unless current_user.partner == nil %>
+              <div class="conclude mb-5">
                 <h4 class="show-body__p-opinion"><%= current_user.partner.name %>さんの反省</h4>
-                <p><%= @partners_opinion.conclude %></p>
+                <p class="mb-0"><%= @partners_opinion.conclude %></p>
+                <span class="small text-dark timestamp"><%= @partners_opinion.updated_at.strftime("%-m月 %-d日 %-H:%M") %>更新</span>
               <% end %>
               </div>
 
