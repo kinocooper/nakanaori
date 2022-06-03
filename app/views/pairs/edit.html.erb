@@ -31,7 +31,8 @@
 
             <div class="form-group w-50 mx-auto">
               <%= f.label :pair_type, "関係性" %>
-              <%= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]],{} , class:"form-control" %>
+              <%#= f.select :pair_type, [["未設定","not_set"],["夫婦","married"],["カップル","couple"],["親子","family"],["その他","other"]],{} , class:"form-control" %>
+              <%= f.select :pair_type,Pair.pair_types.keys.map {|k| [I18n.t("enums.pair.pair_type.#{k}"), k]},{} , class:"form-control" %>
             </div>
 
             <div class="form-group w-50 mx-auto">
@@ -45,12 +46,12 @@
           <% end %>
 
           <div class="text-right">
-            <%= link_to "完全退会する？", p_confirm_path, class:"btn btn-outline-danger align-items-bottom  btn-sm" %>
+            <%= link_to "完全退会する？", confirm_pair_path, class:"btn btn-outline-danger align-items-bottom  btn-sm" %>
           </div>
         </div>
       </div>
     </div>
-    
+
     <%= render "pairs/sidebar", pair: @pair %> <!--サイドバー col-3使用-->
 
   </div>

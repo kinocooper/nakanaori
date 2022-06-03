@@ -17,9 +17,9 @@
             <li>パートナーが利用を続ける限り、このペアに復帰することができます。</li>
           </ul>
 
-          <%= link_to "退会する", disabling_path, method: :patch, class:"btn btn-danger" %>←めんどいので一旦あと回しで・・・</p>
+          <%= link_to "退会する", disabling_user_path, class:"btn btn-danger" %>←めんどいので一旦あと回しで・・・</p>
 
-          <p>ペア情報ごと完全退会する場合は<%= link_to "こちら", p_confirm_path %></p>
+          <p>ペア情報ごと完全退会する場合は<%= link_to "こちら", confirm_pair_path %></p>
         </div>
       </div>
     </div>

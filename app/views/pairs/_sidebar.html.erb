@@ -14,7 +14,12 @@
           <th class="text-center p-0">おしどりランク</th>
         </tr>
         <tr>
-          <td class="text-center"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
+          <!--enum pair_type: {not_set: 0, married: 1, couple: 2, family: 3, other: 4}-->
+          <% if @pair.pair_type == "not_set" or @pair.pair_type == "other" %>
+            <td class="text-center"><%= pair.rank_i18n %></td>
+          <% else %>
+            <td class="text-center"><%= pair.rank_i18n + pair.pair_type_i18n %></td>
+          <% end %>
         </tr>
         <% if current_user.pair.is_paired %>
           <tr>
@@ -35,7 +40,7 @@
       <%= link_to "ユーザー編集", edit_user_path, class:"btn btn-block btn-warning my-2" %>
       <%= link_to "ペア編集", edit_pair_path, class:"btn btn-block btn-warning" %>
       <% unless current_user.pair.is_paired %>
-        <%= link_to "ペア招待", invite_path, class:"btn btn-block btn-outline-info my-2" %>
+        <%= link_to "ペア招待", invite_pair_path, class:"btn btn-block btn-outline-info my-2" %>
       <% end %>
     </div>
   </div>

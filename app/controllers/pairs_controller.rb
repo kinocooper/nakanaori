@@ -47,7 +47,7 @@ class PairsController < ApplicationController
     pair_id = current_user.pair_id
     # PairMailerにフォームに入力したemailとログイン中ユーザのnameの値を渡してwelcomeアクションを呼び出し⇒メール送信
     PairMailer.with(email: email, name: name, pair_id: pair_id).welcome.deliver_later
-    redirect_to complete_path
+    redirect_to complete_pair_path
   end
 
   # 招待メール送信完了画面
@@ -99,15 +99,15 @@ class PairsController < ApplicationController
           redirect_to root_path, notice: 'ペアリングしました！'
 
         else
-          redirect_to join_path, notice: 'キーワードが間違っています'
+          redirect_to join_pair_path, notice: 'キーワードが間違っています'
         end
 
       else
-        redirect_to join_path, notice: '既にペアリング済みのペアIDです。'
+        redirect_to join_pair_path, notice: '既にペアリング済みのペアIDです。'
       end
 
     else
-      redirect_to join_path, notice: 'ペアが存在しません'
+      redirect_to join_pair_path, notice: 'ペアが存在しません'
 
     end
 

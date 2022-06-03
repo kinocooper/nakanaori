@@ -78,7 +78,7 @@ class DiscussRecordsController < ApplicationController
   def reconcile
     discuss_record = DiscussRecord.find(params[:id])
     discuss_record.update(is_closed: true)
-    redirect_to congratulations_path, notice: "ナカナオリおめでとう＾＾"
+    redirect_to congratulations_discuss_record_path, notice: "ナカナオリおめでとう！"
   end
 
   def congratulations

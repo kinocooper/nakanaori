@@ -3,9 +3,12 @@ Rails.application.routes.draw do
   get "about" => "homes#about", as: "about"
 
   # users
-  resource :user, only:[:edit,:update]
-  get 'users/confirm' ,as: "u_confirm"
-  patch 'users/disabling' => "users#disabling", as: "disabling"
+  resource :user, only:[:edit,:update] do
+    collection do
+      get 'confirm'
+      patch 'disabling'
+    end
+  end
 
   # devise
   # deviseをマッピングするがデフォルトルーティングは全skip、必要なアクションだけ個別にルーティング
@@ -19,30 +22,35 @@ Rails.application.routes.draw do
   end
 
   # pairs
-  resource :pair, only:[:new,:create,:edit,:update,:destroy]
   root to: 'pairs#top', as: "root"
-  # get "pairs/introduction", as: "introduction"  newに集約
-  get "pairs/join", as: "join"
-  patch "pairs/pairing", as: "pairing"
-  get 'pairs/invite', as: "invite"
-  get "pairs/send_mail", as: "send_mail"
-  get 'pairs/complete', as: "complete"
-  get 'pairs/confirm', as: "p_confirm"
+  resource :pair, only:[:new,:create,:edit,:update,:destroy] do
+    collection do
+      # 以下 pair/"×××"
+      get "confirm"
+      get "join"
+      get "invite"
+      get "send_mail"
+      get "complete"
+      patch "pairing"
+    end
+  end
 
   # discuss_records
-  get 'discuss_records/congratulations', as: "congratulations"
-  resources :discuss_records, only:[:new,:create,:index,:show,:edit,:update,:destroy] #do
+  resources :discuss_records do
     # resources :personal_opinions, only:[:update]　←ナカナオリ直前にまとめ意見だけを編集するようなページを作るなら必要
     # resources :tag_relationships, only:[:create,:destroy]
-  #end
-  patch "discuss_records/:id/reconcile" => "discuss_records#reconcile", as: "reconcile"
+    member do
+      patch "reconcile"
+      get 'congratulations'
+    end
+  end
 
   # tags
   resources :tags, only:[:index,:show,:create,:destroy]
 
   # tag_relationships
-  post "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#create", as: "tag_relationships"
-  delete "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#destroy", as: "tag_relationshis"
+  post "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#create", as: "new_tag_relationships"
+  delete "discuss_records/:discuss_record_id/tags/:tag_id/tag_relationships" => "tag_relationships#destroy", as: "destroy_tag_relationships"
 
   # searches
   get 'searches/search'

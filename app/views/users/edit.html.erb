@@ -25,7 +25,9 @@
 
             <div class="form-group w-50 mx-auto">
               <%= f.label :oko_gauge, "おこゲージ" %>
-              <%= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]],{}, class:"form-control" %>
+              <%#= f.select :oko_gauge, [['ふつう', "nomal"], ['かなしい', "sad"], ['おこ', "oko"], ['激おこ', "gekioko"], ['一人にして', "alone"]],{}, class:"form-control" %>
+              <%= f.select :oko_gauge,User.oko_gauges.keys.map {|k| [I18n.t("enums.user.oko_gauge.#{k}"), k]} ,{}, class:"form-control" %>
+              <!--oko_gaugeはenum使用につき配列化されている。そのキー部分だけをブロック|k|にマップ(一覧排出)、I18n使用でそれ選択肢表示を日本語化-->
             </div>
 
             <div class="actions my-4 w-50 mx-auto">
@@ -34,7 +36,7 @@
           <% end %>
 
           <!--<div class="text-right">-->
-          <!--  <%#= link_to "退会する？", u_confirm_path, class:"btn btn-outline-danger btn-sm" %><br>-->
+          <!--  <%#= link_to "退会する？", confirm_user_path, class:"btn btn-outline-danger btn-sm" %><br>-->
           <!--  片割れだけの退会は複雑なので、一旦後回しにする👆-->
           <!--</div>-->
 
